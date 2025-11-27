@@ -1,10 +1,9 @@
-/* style.css - نسخة احترافية متجاوبة (كمبيوتر + موبايل) */
+/* style.css - النسخة النهائية المعدلة */
 
-/* -----------------------------------------------------------
-   1. الإعدادات العامة (تعمل على الكمبيوتر والهاتف)
------------------------------------------------------------ */
+/* 1. استيراد الخط (لازم يكون أول سطر) */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
 
+/* 2. المتغيرات والألوان */
 :root {
     --primary-color: #0c2461; /* أزرق ملكي */
     --accent-color: #d6a953;  /* ذهبي */
@@ -12,7 +11,7 @@
     --text-dark: #2c3e50;
     --text-white: #ffffff;
     --whatsapp-color: #25d366;
-    --shadow: 0 5px 15px rgba(0,0,0,0.08); /* ظل ناعم */
+    --shadow: 0 5px 15px rgba(0,0,0,0.08);
     --border-radius: 12px;
 }
 
@@ -28,7 +27,7 @@ body {
     background-color: var(--bg-light);
     color: var(--text-dark);
     line-height: 1.6;
-    padding-top: 80px; /* مساحة الهيدر في الكمبيوتر */
+    padding-top: 80px;
 }
 
 a {
@@ -40,13 +39,11 @@ ul {
     list-style: none;
 }
 
-/* -----------------------------------------------------------
-   2. الهيدر (تصميم الكمبيوتر العريض)
------------------------------------------------------------ */
+/* --- الهيدر (Header) --- */
 header {
     background-color: var(--primary-color);
     color: var(--text-white);
-    padding: 15px 5%; /* مساحة مريحة للكمبيوتر */
+    padding: 15px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -76,7 +73,7 @@ header {
 
 nav ul {
     display: flex;
-    gap: 25px; /* مسافات واسعة بين الروابط في الكمبيوتر */
+    gap: 25px;
 }
 
 nav a {
@@ -92,15 +89,12 @@ nav a:hover {
     color: var(--accent-color);
 }
 
-/* -----------------------------------------------------------
-   3. البانر الرئيسي Hero (تصميم الكمبيوتر)
------------------------------------------------------------ */
+/* --- البانر (Hero) --- */
 .hero {
-    /* تدرج لوني عشان الكلام يوضح فوق الصورة */
     background: linear-gradient(rgba(12, 36, 97, 0.8), rgba(12, 36, 97, 0.6)), url('hero-bg.png');
     background-size: cover;
     background-position: center;
-    height: 85vh; /* ارتفاع كامل تقريباً للشاشة */
+    height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,7 +104,7 @@ nav a:hover {
 }
 
 .hero h1 {
-    font-size: 3rem; /* خط ضخم وفخم للكمبيوتر */
+    font-size: 3rem;
     margin-bottom: 20px;
     font-weight: 900;
     line-height: 1.3;
@@ -142,9 +136,7 @@ nav a:hover {
     transform: translateY(-5px);
 }
 
-/* -----------------------------------------------------------
-   4. الأقسام والبطاقات (تنسيق الكمبيوتر)
------------------------------------------------------------ */
+/* --- الأقسام والبطاقات --- */
 section {
     padding: 80px 5%;
     max-width: 1300px;
@@ -174,7 +166,7 @@ section {
 /* شبكة الشعارات */
 .logos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* توزيع تلقائي مريح */
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 25px;
 }
 
@@ -219,7 +211,7 @@ section {
     padding: 40px;
     margin-bottom: 35px;
     display: flex;
-    align-items: flex-start; /* الصورة بجانب النص */
+    align-items: flex-start;
     gap: 35px;
     border-right: 6px solid var(--primary-color);
 }
@@ -246,7 +238,7 @@ section {
 .service-list {
     margin: 20px 0;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* عمودين للقوائم */
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
 }
 
@@ -256,6 +248,7 @@ section {
     padding-right: 25px;
 }
 
+/* علامة الصح (الافتراضية) */
 .service-list li::before {
     content: '✔';
     position: absolute;
@@ -264,9 +257,14 @@ section {
     font-weight: bold;
 }
 
-/* -----------------------------------------------------------
-   5. الفوتر والزر العائم
------------------------------------------------------------ */
+/* ❌❌ هنا الكود الجديد لعلامة الخطأ ❌❌ */
+.service-list li.cross::before {
+    content: '✖';
+    color: #e74c3c; /* أحمر */
+    font-size: 1.1rem;
+}
+
+/* --- الفوتر --- */
 .sticky-whatsapp {
     position: fixed;
     bottom: 30px;
@@ -304,29 +302,24 @@ footer {
     margin: 0 15px;
 }
 
-
-/* ===========================================================
-   📱📱 منطقة الهاتف فقط (Mobile Only) 📱📱
-   أي كود هنا سيطبق فقط إذا كانت الشاشة صغيرة (أقل من 768px)
-   ولن يؤثر على شكل الكمبيوتر
-   =========================================================== */
+/* ===========================================
+   📱 Mobile View (للهواتف)
+   =========================================== */
 @media (max-width: 768px) {
     
-    /* تعديل جسم الصفحة ليناسب الهاتف */
     body {
-        padding-top: 130px; /* زيادة المساحة العلوية عشان الهيدر العمودي */
+        padding-top: 130px;
     }
 
-    /* 1. ضغط الهيدر */
     header {
-        flex-direction: column; /* ترتيب العناصر فوق بعض */
+        flex-direction: column;
         padding: 10px;
         gap: 10px;
     }
 
     .logo-container {
         width: 100%;
-        justify-content: center; /* توسيط اللوجو */
+        justify-content: center;
     }
 
     .logo-img { height: 40px; }
@@ -334,24 +327,23 @@ footer {
 
     nav ul {
         gap: 10px;
-        flex-wrap: wrap; /* السماح للروابط بالنزول سطر جديد لو مفيش مكان */
+        flex-wrap: wrap;
         justify-content: center;
     }
 
     nav a {
         font-size: 0.9rem;
         padding: 5px 10px;
-        background: rgba(255,255,255,0.1); /* خلفية خفيفة للزر */
+        background: rgba(255,255,255,0.1);
     }
 
-    /* 2. تصغير البانر */
     .hero {
-        height: 60vh; /* تقليل الارتفاع */
+        height: 60vh;
         padding: 20px;
     }
 
     .hero h1 {
-        font-size: 1.6rem; /* تصغير العنوان بشكل كبير */
+        font-size: 1.6rem;
     }
 
     .hero p {
@@ -363,7 +355,6 @@ footer {
         font-size: 1rem;
     }
 
-    /* 3. تنسيق الأقسام للموبايل */
     section {
         padding: 40px 20px;
     }
@@ -372,7 +363,6 @@ footer {
         font-size: 1.6rem;
     }
 
-    /* 4. البطاقات: الصورة فوق والنص تحت */
     .service-card {
         flex-direction: column;
         align-items: center;
@@ -387,12 +377,11 @@ footer {
     }
 
     .service-list {
-        grid-template-columns: 1fr; /* قائمة واحدة تحت بعض */
+        grid-template-columns: 1fr;
         text-align: right;
-        display: inline-block; /* عشان تترتب صح في المنتصف */
+        display: inline-block;
     }
 
-    /* 5. الشعارات: 2 جنب بعض */
     .logos-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
@@ -403,7 +392,6 @@ footer {
         padding: 15px;
     }
 
-    /* 6. زر الواتساب العائم */
     .sticky-whatsapp {
         padding: 8px 15px;
         font-size: 0.9rem;
