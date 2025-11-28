@@ -62,3 +62,104 @@
 
 </body>
 </html>
+<section class="order-section">
+        <h2 class="section-title">نموذج تقديم طلب خدمة</h2>
+        <div class="form-container">
+            <form id="orderForm">
+                
+                <div class="form-group">
+                    <label for="fullName">الاسم الثلاثي:</label>
+                    <input type="text" id="fullName" placeholder="اكتب اسمك هنا" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="age">العمر:</label>
+                        <input type="number" id="age" placeholder="مثال: 21" required>
+                    </div>
+                    <div class="form-group half">
+                        <label for="weight">الوزن (كجم):</label>
+                        <input type="number" id="weight" placeholder="مثال: 70" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">رقم الجوال:</label>
+                    <input type="tel" id="phone" placeholder="05xxxxxxxx" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="service">الخدمة المطلوبة:</label>
+                    <select id="service" required>
+                        <option value="" disabled selected>اختر الخدمة...</option>
+                        <option value="وزارة الدفاع">وزارة الدفاع</option>
+                        <option value="وزارة الداخلية">وزارة الداخلية</option>
+                        <option value="الحرس الوطني">الحرس الوطني</option>
+                        <option value="أمن الدولة">رئاسة أمن الدولة</option>
+                        <option value="كلية عسكرية">التقديم على الكليات العسكرية</option>
+                        <option value="تعديل حالة">تعديل حالة الطلب</option>
+                        <option value="أخرى">خدمة أخرى</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>هل قمت بالتقديم مسبقاً؟</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="applied" value="نعم" checked> نعم
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="applied" value="لا"> لا
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">ملاحظات إضافية:</label>
+                    <textarea id="notes" placeholder="اكتب أي تفاصيل أخرى هنا..."></textarea>
+                </div>
+
+                <button type="button" onclick="sendToWhatsapp()" class="submit-btn">
+                    <i class="fab fa-whatsapp"></i> إرسال الطلب واتساب
+                </button>
+
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function sendToWhatsapp() {
+            // 1. جلب البيانات من الحقول
+            var name = document.getElementById("fullName").value;
+            var age = document.getElementById("age").value;
+            var weight = document.getElementById("weight").value;
+            var phone = document.getElementById("phone").value;
+            var service = document.getElementById("service").value;
+            var notes = document.getElementById("notes").value;
+            
+            // جلب قيمة الراديو (نعم/لا)
+            var applied = document.querySelector('input[name="applied"]:checked').value;
+
+            // 2. التحقق من أن الحقول المهمة ممتلئة
+            if (name === "" || phone === "" || service === "") {
+                alert("يرجى تعبئة الاسم ورقم الجوال والخدمة المطلوبة على الأقل.");
+                return;
+            }
+
+            // 3. تنسيق الرسالة
+            var message = "*طلب خدمة جديد من الموقع*%0a" +
+                          "---------------------------%0a" +
+                          "*👤 الاسم:* " + name + "%0a" +
+                          "*🎂 العمر:* " + age + " سنة%0a" +
+                          "*⚖️ الوزن:* " + weight + " كجم%0a" +
+                          "*📱 الجوال:* " + phone + "%0a" +
+                          "*🛠️ الخدمة:* " + service + "%0a" +
+                          "*هل قدم سابقاً؟:* " + applied + "%0a" +
+                          "---------------------------%0a" +
+                          "*📝 ملاحظات:* " + notes;
+
+            // 4. فتح واتساب (رقمك موجود هنا)
+            var whatsappUrl = "https://wa.me/966581926365?text=" + message;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
