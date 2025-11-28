@@ -1,12 +1,74 @@
-<section class="order-section">
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta property="og:title" content="وظائف عسكرية – حكومية | إنجاز معاملاتك باحترافية">
+    <meta property="og:description" content="نقدم لك حلولاً سريعة وموثوقة لإنجاز كافة معاملاتك العسكرية والحكومية في المملكة.">
+    <meta property="og:image" content="https://abuzaiddesignerix-maker.github.io/00/banner.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://abuzaiddesignerix-maker.github.io/00/">
+    <meta property="og:type" content="website">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا وتقديم طلب</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="شعار الموقع" class="logo-img">
+            <span class="site-title">وظائف عسكرية – حكومية</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="services.html">الخدمات</a></li>
+                <li><a href="contact.html">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <a href="https://wa.me/966581926365" class="sticky-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i> تواصل واتساب
+    </a>
+
+    <section style="text-align: center; padding: 40px 20px;">
+        <h1 class="section-title">قنوات التواصل المباشر</h1>
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            
+            <a href="https://wa.me/966581926365" target="_blank" class="logo-card" style="width: 200px; height: auto;">
+                <i class="fab fa-whatsapp" style="font-size: 3rem; color: #25d366; margin-bottom: 10px;"></i>
+                <h3>واتساب</h3>
+                <p>0581926365</p>
+            </a>
+
+            <a href="https://www.tiktok.com/@qtq54_" target="_blank" class="logo-card" style="width: 200px; height: auto;">
+                <i class="fab fa-tiktok" style="font-size: 3rem; color: #000; margin-bottom: 10px;"></i>
+                <h3>TikTok 1</h3>
+                <p>@qtq54_</p>
+            </a>
+
+            <a href="https://www.tiktok.com/@ddra1232" target="_blank" class="logo-card" style="width: 200px; height: auto;">
+                <i class="fab fa-tiktok" style="font-size: 3rem; color: #000; margin-bottom: 10px;"></i>
+                <h3>TikTok 2</h3>
+                <p>@ddra1232</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="order-section">
         <h2 class="section-title">نموذج تقديم طلب خدمة</h2>
         <div class="form-container">
             <form id="orderForm">
                 
                 <div class="form-group">
                     <label>الاسم الكامل:</label>
-                    <input type="text" id="fullName" placeholder="اكتب اسمك الثلاثي" required>
+                    <input type="text" id="fullName" placeholder="الاسم الثلاثي" required>
                 </div>
+                
                 <div class="form-group">
                     <label>رقم الجوال:</label>
                     <input type="tel" id="phone" placeholder="05xxxxxxxx" required>
@@ -15,36 +77,36 @@
                 <div class="form-row">
                     <div class="form-group third">
                         <label>العمر:</label>
-                        <input type="number" id="age" placeholder="مثال: 21">
+                        <input type="number" id="age" placeholder="21">
                     </div>
                     <div class="form-group third">
                         <label>الوزن (كجم):</label>
-                        <input type="number" id="weight" placeholder="مثال: 70">
+                        <input type="number" id="weight" placeholder="70">
                     </div>
                     <div class="form-group third">
                         <label>الطول (سم):</label>
-                        <input type="number" id="height" placeholder="مثال: 170">
+                        <input type="number" id="height" placeholder="170">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group half">
                         <label>المنطقة:</label>
-                        <input type="text" id="region" placeholder="مثال: الرياض">
+                        <input type="text" id="region" placeholder="الرياض">
                     </div>
                     <div class="form-group half">
                         <label>القطاع:</label>
-                        <input type="text" id="sector" placeholder="مثال: الأمن العام">
+                        <input type="text" id="sector" placeholder="الأمن العام">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group half">
-                        <label>درجة القدرات:</label>
+                        <label>القدرات:</label>
                         <input type="text" id="qudurat" placeholder="الدرجة">
                     </div>
                     <div class="form-group half">
-                        <label>المعدل الدراسي:</label>
+                        <label>المعدل:</label>
                         <input type="text" id="gpa" placeholder="المعدل">
                     </div>
                 </div>
@@ -61,19 +123,17 @@
                     </div>
                 </div>
 
-                <div class="form-group" id="appNumberContainer" style="display: none;">
-                    <label style="color: #d6a953;">رقم الطلب (مهم):</label>
+                <div class="form-group" id="appNumberContainer" style="display: none; background-color: #fff3cd; padding: 10px; border-radius: 5px;">
+                    <label style="color: #856404;">رقم الطلب (مهم):</label>
                     <input type="text" id="appNumber" placeholder="اكتب رقم الطلب هنا">
                 </div>
 
                 <div class="form-group box-style">
-                    <label>نوع الخدمة المطلوبة (اختر واحدة):</label>
-                    
+                    <label>نوع الخدمة المطلوبة:</label>
                     <label class="check-box-item">
                         <input type="radio" name="serviceType" value="تعديل حالة الطلب الى قبول مبدئي">
                         تعديل حالة الطلب الى قبول مبدئي
                     </label>
-
                     <label class="check-box-item">
                         <input type="radio" name="serviceType" value="تعديل حالة الطلب الى قبول مبدئي ونهائي">
                         تعديل حالة الطلب الى قبول مبدئي ونهائي
@@ -82,7 +142,7 @@
 
                 <div class="form-group">
                     <label>ملاحظات إضافية:</label>
-                    <textarea id="notes" placeholder="اكتب أي ملاحظات هنا..."></textarea>
+                    <textarea id="notes" placeholder="اكتب أي تفاصيل هنا..."></textarea>
                 </div>
 
                 <button type="button" onclick="sendToWhatsapp()" class="submit-btn">
@@ -93,21 +153,22 @@
         </div>
     </section>
 
+    <footer>
+        <p>جميع الحقوق محفوظة © 2025</p>
+    </footer>
+
     <script>
-        // دالة لإظهار وإخفاء رقم الطلب
         function toggleAppNumber(show) {
             var container = document.getElementById('appNumberContainer');
             if (show) {
                 container.style.display = 'block';
             } else {
                 container.style.display = 'none';
-                document.getElementById('appNumber').value = ""; // مسح الرقم لو اختار لا
+                document.getElementById('appNumber').value = "";
             }
         }
 
-        // دالة الإرسال للواتساب
         function sendToWhatsapp() {
-            // جلب البيانات
             var name = document.getElementById("fullName").value;
             var phone = document.getElementById("phone").value;
             var age = document.getElementById("age").value;
@@ -118,25 +179,18 @@
             var qudurat = document.getElementById("qudurat").value;
             var gpa = document.getElementById("gpa").value;
             var notes = document.getElementById("notes").value;
-
-            // التأكد من هل قدم سابقاً وجلب رقم الطلب لو موجود
+            
             var applied = document.querySelector('input[name="applied"]:checked').value;
-            var appNumber = "لا يوجد";
-            if (applied === "نعم") {
-                appNumber = document.getElementById("appNumber").value;
-            }
-
-            // جلب نوع الخدمة المختارة
+            var appNumber = (applied === "نعم") ? document.getElementById("appNumber").value : "لا يوجد";
+            
             var serviceTypeElement = document.querySelector('input[name="serviceType"]:checked');
             var serviceType = serviceTypeElement ? serviceTypeElement.value : "لم يتم التحديد";
 
-            // التحقق من البيانات الأساسية
             if (name === "" || phone === "") {
-                alert("يرجى كتابة الاسم ورقم الجوال على الأقل");
+                alert("يرجى كتابة الاسم ورقم الجوال");
                 return;
             }
 
-            // تنسيق الرسالة
             var message = "*📄 طلب خدمة جديد*%0a" +
                           "---------------------------%0a" +
                           "*👤 الاسم:* " + name + "%0a" +
@@ -156,8 +210,8 @@
                           "---------------------------%0a" +
                           "*📝 ملاحظات:* " + notes;
 
-            // فتح الواتساب
-            var whatsappUrl = "https://wa.me/966581926365?text=" + message;
-            window.open(whatsappUrl, '_blank');
+            window.open("https://wa.me/966581926365?text=" + message, '_blank');
         }
     </script>
+</body>
+</html>
