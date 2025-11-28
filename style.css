@@ -597,3 +597,130 @@ footer {
         gap: 0;
     }
 }
+
+/* --- تنسيق الفوتر الاحترافي الجديد --- */
+.main-footer {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    padding-top: 60px;
+    margin-top: 50px;
+    border-top: 5px solid var(--accent-color);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-col h3 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+}
+
+.footer-col h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+.footer-col p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: #ddd;
+    transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+    color: var(--accent-color);
+    padding-right: 5px;
+}
+
+/* تنسيق الأيقونات */
+.footer-social-icons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    transition: 0.3s;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px);
+    background-color: var(--accent-color);
+}
+
+.social-icon.whatsapp:hover { background-color: #25d366; }
+.social-icon.tiktok:hover { background-color: #000; border: 1px solid #333; }
+
+.contact-number {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.footer-bottom {
+    background-color: #081b4b;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* تعديلات الموبايل للفوتر */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-col h4::after {
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    .footer-social-icons {
+        justify-content: center;
+    }
+}
