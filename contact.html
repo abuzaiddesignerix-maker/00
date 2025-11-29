@@ -8,6 +8,7 @@
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://abuzaiddesignerix-maker.github.io/00/">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="وظائف عسكرية – حكومية">
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -174,8 +175,21 @@
                     <div class="form-row">
                         <div class="form-group half">
                             <label>تاريخ الميلاد:</label>
-                            <input type="date" id="dob">
+                            
+                            <div class="radio-group" style="margin-bottom: 10px; gap: 15px;">
+                                <label class="radio-label" style="font-size: 0.9rem;">
+                                    <input type="radio" name="dateType" value="ميلادي" checked onchange="toggleDateType('miladi')"> ميلادي
+                                </label>
+                                <label class="radio-label" style="font-size: 0.9rem;">
+                                    <input type="radio" name="dateType" value="هجري" onchange="toggleDateType('hijri')"> هجري
+                                </label>
+                            </div>
+
+                            <input type="date" id="dobMiladi">
+                            
+                            <input type="text" id="dobHijri" placeholder="مثال: 15/07/1420" style="display: none;">
                         </div>
+
                         <div class="form-group half">
                             <label>الحالة الاجتماعية:</label>
                             <select id="maritalStatus">
@@ -184,7 +198,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="form-row">
                         <div class="form-group third">
                             <label>اسم الحي:</label>
@@ -300,6 +313,22 @@
             }
         }
 
+        // دالة التبديل بين التاريخ الميلادي والهجري
+        function toggleDateType(type) {
+            var miladiInput = document.getElementById('dobMiladi');
+            var hijriInput = document.getElementById('dobHijri');
+            
+            if (type === 'miladi') {
+                miladiInput.style.display = 'block';
+                hijriInput.style.display = 'none';
+                hijriInput.value = ""; // مسح القيمة عند التبديل
+            } else {
+                miladiInput.style.display = 'none';
+                hijriInput.style.display = 'block';
+                miladiInput.value = ""; // مسح القيمة عند التبديل
+            }
+        }
+
         function sendToWhatsapp() {
             var name = document.getElementById("fullName").value;
             var phone = document.getElementById("phone").value;
@@ -331,7 +360,6 @@
             if (wantExtra === "نعم") {
                 var idNumber = document.getElementById("idNumber").value;
                 var fatherId = document.getElementById("fatherId").value;
-                var dob = document.getElementById("dob").value;
                 var maritalStatus = document.getElementById("maritalStatus").value;
                 var district = document.getElementById("district").value;
                 var street = document.getElementById("street").value;
@@ -342,10 +370,20 @@
                 var bloodType = document.getElementById("bloodType").value;
                 var relativeName = document.getElementById("relativeName").value;
 
+                // التعامل مع التاريخ المختار
+                var dateType = document.querySelector('input[name="dateType"]:checked').value;
+                var dobValue = "";
+                
+                if (dateType === 'miladi') {
+                    dobValue = document.getElementById('dobMiladi').value + " (ميلادي)";
+                } else {
+                    dobValue = document.getElementById('dobHijri').value + " (هجري)";
+                }
+
                 extraMessage =  "---------------------------%0a" +
                                 "*📝 بيانات تفصيلية إضافية:*%0a" +
                                 "*📍 رقم الهوية:* " + idNumber + "%0a" +
-                                "*📍 تاريخ الميلاد:* " + dob + "%0a" +
+                                "*📍 تاريخ الميلاد:* " + dobValue + "%0a" +
                                 "*📍 الحالة الاجتماعية:* " + maritalStatus + "%0a" +
                                 "*📍 رقم هوية الأب:* " + fatherId + "%0a" +
                                 "*📍 اسم الحي:* " + district + "%0a" +
