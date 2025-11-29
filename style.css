@@ -724,3 +724,28 @@ footer {
         justify-content: center;
     }
 }
+
+/* --- تنسيق قسم الفيديو --- */
+.video-section {
+    padding: 60px 5%;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.video-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.promo-video {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    border: 4px solid white;
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .video-section { padding: 40px 20px; }
+}
