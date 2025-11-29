@@ -749,3 +749,15 @@ footer {
 @media (max-width: 768px) {
     .video-section { padding: 40px 20px; }
 }
+
+.form-group input, 
+.form-group textarea, 
+.form-group select { /* 👈 تم إضافة العنصر <select> هنا */
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    height: 40px; /* 👈 إضافة ارتفاع ثابت ليناسب حقول الإدخال */
+}
