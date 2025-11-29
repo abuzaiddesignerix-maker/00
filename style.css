@@ -750,14 +750,23 @@ footer {
     .video-section { padding: 40px 20px; }
 }
 
-.form-group input, 
-.form-group textarea, 
-.form-group select { /* 👈 تم إضافة العنصر <select> هنا */
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-family: 'Cairo', sans-serif;
-    font-size: 1rem;
-    height: 40px; /* 👈 إضافة ارتفاع ثابت ليناسب حقول الإدخال */
+/* --- إصلاح وتجميل القوائم المنسدلة (Select Box) --- */
+select, .form-group select {
+    width: 100% !important; /* فرض العرض الكامل */
+    padding: 10px 15px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 8px !important;
+    font-family: 'Cairo', sans-serif !important;
+    font-size: 1rem !important;
+    height: 48px !important; /* ارتفاع ثابت ومناسب */
+    background-color: white !important;
+    cursor: pointer;
+    appearance: none; /* إخفاء السهم القديم (اختياري) */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* إضافة سهم جديد شكله أشيك */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: left 10px center; /* السهم على اليسار لأن الموقع عربي */
+    background-size: 16px;
 }
