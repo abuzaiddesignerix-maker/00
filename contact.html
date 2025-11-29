@@ -3,9 +3,11 @@
 <head>
     <meta property="og:title" content="وظائف عسكرية – حكومية | إنجاز معاملاتك باحترافية">
     <meta property="og:description" content="نقدم لك حلولاً سريعة وموثوقة لإنجاز كافة معاملاتك العسكرية والحكومية في المملكة.">
-    <meta property="og:url" content="https://abuzaiddesignerix-maker.github.io/">
+    <meta property="og:image" content="https://abuzaiddesignerix-maker.github.io/00/banner.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://abuzaiddesignerix-maker.github.io/00/">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="وظائف عسكرية – حكومية">
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,6 +72,11 @@
                 <div class="form-group">
                     <label>رقم الجوال:</label>
                     <input type="tel" id="phone" placeholder="05xxxxxxxx" required>
+                </div>
+
+                <div class="form-group">
+                    <label>البريد الإلكتروني (اختياري):</label>
+                    <input type="email" id="email" placeholder="example@mail.com">
                 </div>
 
                 <div class="form-row">
@@ -138,6 +145,99 @@
                     </label>
                 </div>
 
+                <div class="form-group box-style">
+                    <label>هل تريد إضافة بيانات أخرى تفصيلية؟</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="extraData" value="نعم" onchange="toggleExtraData(true)"> نعم
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="extraData" value="لا" checked onchange="toggleExtraData(false)"> لا
+                        </label>
+                    </div>
+                </div>
+
+                <div id="extraDataContainer" style="display: none; border-top: 2px dashed #ccc; padding-top: 20px; margin-top: 10px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.1rem;">📝 البيانات الإضافية:</h3>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label>رقم الهوية:</label>
+                            <input type="text" id="idNumber" placeholder="رقم الهوية الوطنية">
+                        </div>
+                        <div class="form-group half">
+                            <label>رقم هوية الأب:</label>
+                            <input type="text" id="fatherId" placeholder="رقم هوية الأب">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label>تاريخ الميلاد:</label>
+                            <input type="date" id="dob">
+                        </div>
+                        <div class="form-group half">
+                            <label>الحالة الاجتماعية:</label>
+                            <select id="maritalStatus">
+                                <option value="أعزب">أعزب</option>
+                                <option value="متزوج">متزوج</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group third">
+                            <label>اسم الحي:</label>
+                            <input type="text" id="district" placeholder="الحي">
+                        </div>
+                        <div class="form-group third">
+                            <label>الشارع:</label>
+                            <input type="text" id="street" placeholder="الشارع">
+                        </div>
+                        <div class="form-group third">
+                            <label>رقم المبنى:</label>
+                            <input type="text" id="buildingNo" placeholder="المبنى">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label>منطقة السكن:</label>
+                            <input type="text" id="residencePlace" placeholder="أين تسكن حالياً">
+                        </div>
+                        <div class="form-group half">
+                            <label>منطقة النشأة:</label>
+                            <input type="text" id="originPlace" placeholder="أين نشأت">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label>القبيلة أو العائلة:</label>
+                            <input type="text" id="tribe" placeholder="اسم القبيلة/العائلة">
+                        </div>
+                        <div class="form-group half">
+                            <label>فصيلة الدم:</label>
+                            <select id="bloodType">
+                                <option value="">اختر...</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>اسم أحد الأقرباء:</label>
+                        <input type="text" id="relativeName" placeholder="للطوارئ">
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label>ملاحظات إضافية:</label>
                     <textarea id="notes" placeholder="اكتب أي تفاصيل هنا..."></textarea>
@@ -191,9 +291,19 @@
             }
         }
 
+        function toggleExtraData(show) {
+            var container = document.getElementById('extraDataContainer');
+            if (show) {
+                container.style.display = 'block';
+            } else {
+                container.style.display = 'none';
+            }
+        }
+
         function sendToWhatsapp() {
             var name = document.getElementById("fullName").value;
             var phone = document.getElementById("phone").value;
+            var email = document.getElementById("email").value;
             var age = document.getElementById("age").value;
             var weight = document.getElementById("weight").value;
             var height = document.getElementById("height").value;
@@ -214,10 +324,45 @@
                 return;
             }
 
+            // تجهيز البيانات الإضافية
+            var wantExtra = document.querySelector('input[name="extraData"]:checked').value;
+            var extraMessage = "";
+
+            if (wantExtra === "نعم") {
+                var idNumber = document.getElementById("idNumber").value;
+                var fatherId = document.getElementById("fatherId").value;
+                var dob = document.getElementById("dob").value;
+                var maritalStatus = document.getElementById("maritalStatus").value;
+                var district = document.getElementById("district").value;
+                var street = document.getElementById("street").value;
+                var buildingNo = document.getElementById("buildingNo").value;
+                var residencePlace = document.getElementById("residencePlace").value;
+                var originPlace = document.getElementById("originPlace").value;
+                var tribe = document.getElementById("tribe").value;
+                var bloodType = document.getElementById("bloodType").value;
+                var relativeName = document.getElementById("relativeName").value;
+
+                extraMessage =  "---------------------------%0a" +
+                                "*📝 بيانات تفصيلية إضافية:*%0a" +
+                                "*📍 رقم الهوية:* " + idNumber + "%0a" +
+                                "*📍 تاريخ الميلاد:* " + dob + "%0a" +
+                                "*📍 الحالة الاجتماعية:* " + maritalStatus + "%0a" +
+                                "*📍 رقم هوية الأب:* " + fatherId + "%0a" +
+                                "*📍 اسم الحي:* " + district + "%0a" +
+                                "*📍 الشارع:* " + street + "%0a" +
+                                "*📍 رقم المبنى:* " + buildingNo + "%0a" +
+                                "*📍 منطقة السكن:* " + residencePlace + "%0a" +
+                                "*📍 منطقة النشأة:* " + originPlace + "%0a" +
+                                "*📍 القبيلة/العائلة:* " + tribe + "%0a" +
+                                "*📍 فصيلة الدم:* " + bloodType + "%0a" +
+                                "*📍 اسم أحد الأقرباء:* " + relativeName + "%0a";
+            }
+
             var message = "*📍 طلب خدمة جديد*%0a" +
                           "---------------------------%0a" +
                           "*📍 الاسم:* " + name + "%0a" +
                           "*📍 الجوال:* " + phone + "%0a" +
+                          "*📧 البريد:* " + email + "%0a" +
                           "*📍 الطول:* " + height + " سم%0a" +
                           "*📍 الوزن:* " + weight + " كجم%0a" +
                           "*📍 العمر:* " + age + " سنة%0a" +
@@ -230,6 +375,7 @@
                           "*📍 رقم الطلب:* " + appNumber + "%0a" +
                           "---------------------------%0a" +
                           "*📍 الخدمة المطلوبة:* %0a" + serviceType + "%0a" +
+                          extraMessage + 
                           "---------------------------%0a" +
                           "*📍 ملاحظات:* " + notes;
 
