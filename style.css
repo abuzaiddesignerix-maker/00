@@ -771,9 +771,15 @@ select, .form-group select {
     background-size: 16px;
 }
 
-/* --- إصلاح مشكلة التاريخ المعكوس --- */
+/* --- إصلاح نهائي وقوي للتاريخ --- */
 input[type="date"] {
-    direction: ltr;       /* يجبر التنسيق يظهر بشكل صحيح (يوم/شهر/سنة) */
-    text-align: right;    /* يخلي الكلام والأرقام ناحية اليمين زي العربي */
-    padding-right: 10px;  /* مسافة عشان الكلام مايلزقش في الحافة */
+    direction: ltr !important;       /* إجبار الترتيب الإنجليزي الصحيح */
+    text-align: right !important;    /* إجبار النص يكون يمين */
+    unicode-bidi: bidi-override !important;
+}
+
+/* تنسيق إضافي لمتصفحات كروم والموبايل لضبط المحاذاة */
+::-webkit-datetime-edit { 
+    display: flex; 
+    justify-content: flex-end; 
 }
