@@ -159,12 +159,12 @@
                 </div>
 
                 <div id="extraDataContainer" style="display: none; border-top: 2px dashed #ccc; padding-top: 20px; margin-top: 10px;">
-                    <h3 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.1rem;">📍 البيانات الإضافية:</h3>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.1rem;">📝 البيانات الإضافية:</h3>
 
                     <div class="form-row">
                         <div class="form-group half">
                             <label>رقم الهوية:</label>
-                            <input type="text" id="idNumber" placeholder="رقم الهوية الوطنية">
+                            <input type="number" id="idNumber" placeholder="رقم الهوية الوطنية">
                         </div>
                         <div class="form-group half">
                             <label>رقم هوية الأب:</label>
@@ -185,9 +185,31 @@
                                 </label>
                             </div>
 
-                            <input type="date" id="dobMiladi">
+                            <input type="date" id="dobMiladi" class="date-fix" data-placeholder="يوم / شهر / سنة">
                             
-                            <input type="text" id="dobHijri" placeholder="مثال: 15/07/1420" style="display: none;">
+                            <div id="dobHijriContainer" style="display: none; gap: 5px;">
+                                <select id="hDay" style="width: 30%;">
+                                    <option value="">اليوم</option>
+                                </select>
+                                <select id="hMonth" style="width: 35%;">
+                                    <option value="">الشهر</option>
+                                    <option value="1">محرم</option>
+                                    <option value="2">صفر</option>
+                                    <option value="3">ربيع الأول</option>
+                                    <option value="4">ربيع الثاني</option>
+                                    <option value="5">جمادى الأولى</option>
+                                    <option value="6">جمادى الآخرة</option>
+                                    <option value="7">رجب</option>
+                                    <option value="8">شعبان</option>
+                                    <option value="9">رمضان</option>
+                                    <option value="10">شوال</option>
+                                    <option value="11">ذو القعدة</option>
+                                    <option value="12">ذو الحجة</option>
+                                </select>
+                                <select id="hYear" style="width: 35%;">
+                                    <option value="">السنة</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="form-group half">
@@ -198,6 +220,7 @@
                             </select>
                         </div>
                     </div>
+
                     <div class="form-row">
                         <div class="form-group third">
                             <label>اسم الحي:</label>
@@ -294,6 +317,27 @@
     </footer>
 
     <script>
+        // تعبئة القوائم الهجرية عند التحميل
+        document.addEventListener('DOMContentLoaded', function() {
+            var daySelect = document.getElementById('hDay');
+            var yearSelect = document.getElementById('hYear');
+
+            // أيام
+            for (var i = 1; i <= 30; i++) {
+                var option = document.createElement('option');
+                option.value = i;
+                option.text = i;
+                daySelect.appendChild(option);
+            }
+            // سنوات (من 1400 إلى 1435)
+            for (var i = 1400; i <= 1435; i++) {
+                var option = document.createElement('option');
+                option.value = i;
+                option.text = i;
+                yearSelect.appendChild(option);
+            }
+        });
+
         function toggleAppNumber(show) {
             var container = document.getElementById('appNumberContainer');
             if (show) {
@@ -313,19 +357,21 @@
             }
         }
 
-        // دالة التبديل بين التاريخ الميلادي والهجري
         function toggleDateType(type) {
             var miladiInput = document.getElementById('dobMiladi');
-            var hijriInput = document.getElementById('dobHijri');
+            var hijriContainer = document.getElementById('dobHijriContainer');
             
             if (type === 'miladi') {
                 miladiInput.style.display = 'block';
-                hijriInput.style.display = 'none';
-                hijriInput.value = ""; // مسح القيمة عند التبديل
+                hijriContainer.style.display = 'none';
+                // تصفير
+                document.getElementById('hDay').value = "";
+                document.getElementById('hMonth').value = "";
+                document.getElementById('hYear').value = "";
             } else {
                 miladiInput.style.display = 'none';
-                hijriInput.style.display = 'block';
-                miladiInput.value = ""; // مسح القيمة عند التبديل
+                hijriContainer.style.display = 'flex'; // استخدام flex
+                miladiInput.value = "";
             }
         }
 
@@ -353,12 +399,16 @@
                 return;
             }
 
-            // تجهيز البيانات الإضافية
             var wantExtra = document.querySelector('input[name="extraData"]:checked').value;
             var extraMessage = "";
 
             if (wantExtra === "نعم") {
                 var idNumber = document.getElementById("idNumber").value;
+                if (idNumber !== "" && (idNumber.charAt(0) !== "1" || idNumber.length !== 10)) {
+                    alert("رقم الهوية يجب أن يبدأ بـ 1 ومكون من 10 أرقام");
+                    return;
+                }
+
                 var fatherId = document.getElementById("fatherId").value;
                 var maritalStatus = document.getElementById("maritalStatus").value;
                 var district = document.getElementById("district").value;
@@ -370,18 +420,25 @@
                 var bloodType = document.getElementById("bloodType").value;
                 var relativeName = document.getElementById("relativeName").value;
 
-                // التعامل مع التاريخ المختار
+                // معالجة التاريخ
                 var dateType = document.querySelector('input[name="dateType"]:checked').value;
                 var dobValue = "";
                 
                 if (dateType === 'miladi') {
                     dobValue = document.getElementById('dobMiladi').value + " (ميلادي)";
                 } else {
-                    dobValue = document.getElementById('dobHijri').value + " (هجري)";
+                    var d = document.getElementById('hDay').value;
+                    var m = document.getElementById('hMonth').options[document.getElementById('hMonth').selectedIndex].text;
+                    var y = document.getElementById('hYear').value;
+                    if(d && m && y && m !== "الشهر") {
+                        dobValue = d + " / " + m + " / " + y + " (هجري)";
+                    } else {
+                        dobValue = "غير محدد";
+                    }
                 }
 
                 extraMessage =  "---------------------------%0a" +
-                                "*📍 بيانات تفصيلية إضافية:*%0a" +
+                                "*📝 بيانات تفصيلية إضافية:*%0a" +
                                 "*📍 رقم الهوية:* " + idNumber + "%0a" +
                                 "*📍 تاريخ الميلاد:* " + dobValue + "%0a" +
                                 "*📍 الحالة الاجتماعية:* " + maritalStatus + "%0a" +
@@ -400,7 +457,7 @@
                           "---------------------------%0a" +
                           "*📍 الاسم:* " + name + "%0a" +
                           "*📍 الجوال:* " + phone + "%0a" +
-                          "*📍 البريد:* " + email + "%0a" +
+                          "*📧 البريد:* " + email + "%0a" +
                           "*📍 الطول:* " + height + " سم%0a" +
                           "*📍 الوزن:* " + weight + " كجم%0a" +
                           "*📍 العمر:* " + age + " سنة%0a" +
