@@ -771,15 +771,32 @@ select, .form-group select {
     background-size: 16px;
 }
 
-/* --- إصلاح نهائي وقوي للتاريخ --- */
+
+/* --- إصلاح خانة التاريخ نهائياً --- */
 input[type="date"] {
-    direction: ltr !important;       /* إجبار الترتيب الإنجليزي الصحيح */
-    text-align: right !important;    /* إجبار النص يكون يمين */
-    unicode-bidi: bidi-override !important;
+    display: block;
+    width: 100%;
+    /* 1. إصلاح الحروف المعكوسة */
+    direction: ltr !important; 
+    /* 2. محاذاة النص لليمين */
+    text-align: right !important;
+    /* 3. مسافة عشان الكلام مايدخلش في الأيقونة */
+    padding-left: 40px; 
+    padding-right: 10px;
+    position: relative;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Cairo', sans-serif;
 }
 
-/* تنسيق إضافي لمتصفحات كروم والموبايل لضبط المحاذاة */
-::-webkit-datetime-edit { 
-    display: flex; 
-    justify-content: flex-end; 
+/* --- نقل أيقونة التقويم لليسار (عشان تناسب العربي) --- */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
 }
