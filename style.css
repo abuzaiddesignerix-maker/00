@@ -800,3 +800,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 0;
     margin: 0;
 }
+
+/* كلاس الخطأ - يجعل البرواز أحمر */
+.input-error {
+    border: 2px solid #ff0000 !important;
+    background-color: #ffe6e6 !important; /* خلفية حمراء خفيفة جداً */
+}
