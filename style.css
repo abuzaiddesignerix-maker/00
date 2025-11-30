@@ -806,3 +806,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border: 2px solid #ff0000 !important;
     background-color: #ffe6e6 !important; /* خلفية حمراء خفيفة جداً */
 }
+
+/* --- إضافة مسافة فوق زر التقديم في صفحة الخدمات --- */
+.service-content .btn-main {
+    margin-top: 25px !important; /* مسافة 25 بيكسل تفصله عن الكلام */
+    display: inline-block; /* لضمان إن المسافة تتحسب صح */
+}
