@@ -39,19 +39,16 @@
     <section style="text-align: center; padding: 40px 20px;">
         <h1 class="section-title">قنوات التواصل المباشر</h1>
         <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-            
             <a href="https://wa.me/966581926365" target="_blank" class="logo-card" style="width: 200px; height: auto;">
                 <i class="fab fa-whatsapp" style="font-size: 3rem; color: #25d366; margin-bottom: 10px;"></i>
                 <h3>واتساب</h3>
                 <p>0581926365</p>
             </a>
-
             <a href="https://www.tiktok.com/@qtq54_" target="_blank" class="logo-card" style="width: 200px; height: auto;">
                 <i class="fab fa-tiktok" style="font-size: 3rem; color: #000; margin-bottom: 10px;"></i>
                 <h3>TikTok 1</h3>
                 <p>@qtq54_</p>
             </a>
-
             <a href="https://www.tiktok.com/@ddra1232" target="_blank" class="logo-card" style="width: 200px; height: auto;">
                 <i class="fab fa-tiktok" style="font-size: 3rem; color: #000; margin-bottom: 10px;"></i>
                 <h3>TikTok 2</h3>
@@ -168,7 +165,7 @@
                         </div>
                         <div class="form-group half">
                             <label>رقم هوية الأب:</label>
-                            <input type="text" id="fatherId" placeholder="رقم هوية الأب">
+                            <input type="number" id="fatherId" placeholder="رقم هوية الأب">
                         </div>
                     </div>
 
@@ -317,113 +314,95 @@
     </footer>
 
     <script>
-        // تعبئة القوائم الهجرية عند التحميل
+        // تعبئة القوائم الهجرية
         document.addEventListener('DOMContentLoaded', function() {
             var daySelect = document.getElementById('hDay');
             var yearSelect = document.getElementById('hYear');
-
-            // أيام
             for (var i = 1; i <= 30; i++) {
                 var option = document.createElement('option');
-                option.value = i;
-                option.text = i;
-                daySelect.appendChild(option);
+                option.value = i; option.text = i; daySelect.appendChild(option);
             }
-            // سنوات (من 1400 إلى 1435)
             for (var i = 1400; i <= 1435; i++) {
                 var option = document.createElement('option');
-                option.value = i;
-                option.text = i;
-                yearSelect.appendChild(option);
+                option.value = i; option.text = i; yearSelect.appendChild(option);
             }
         });
 
+        // دوال الإظهار والإخفاء
         function toggleAppNumber(show) {
             var container = document.getElementById('appNumberContainer');
-            if (show) {
-                container.style.display = 'block';
-            } else {
-                container.style.display = 'none';
-                document.getElementById('appNumber').value = "";
-            }
+            container.style.display = show ? 'block' : 'none';
+            if(!show) document.getElementById('appNumber').value = "";
         }
 
         function toggleExtraData(show) {
             var container = document.getElementById('extraDataContainer');
-            if (show) {
-                container.style.display = 'block';
-            } else {
-                container.style.display = 'none';
-            }
+            container.style.display = show ? 'block' : 'none';
         }
 
         function toggleDateType(type) {
             var miladiInput = document.getElementById('dobMiladi');
             var hijriContainer = document.getElementById('dobHijriContainer');
-            
             if (type === 'miladi') {
                 miladiInput.style.display = 'block';
                 hijriContainer.style.display = 'none';
-                // تصفير
                 document.getElementById('hDay').value = "";
                 document.getElementById('hMonth').value = "";
                 document.getElementById('hYear').value = "";
             } else {
                 miladiInput.style.display = 'none';
-                hijriContainer.style.display = 'flex'; // استخدام flex
+                hijriContainer.style.display = 'flex';
                 miladiInput.value = "";
             }
         }
 
         function sendToWhatsapp() {
+            // 1. تنظيف الأخطاء السابقة
+            var inputs = document.querySelectorAll('input, select');
+            inputs.forEach(function(input) { input.classList.remove('input-error'); });
+
+            // 2. التحقق الأساسي
             var name = document.getElementById("fullName").value;
             var phone = document.getElementById("phone").value;
-            var email = document.getElementById("email").value;
-            var age = document.getElementById("age").value;
-            var weight = document.getElementById("weight").value;
-            var height = document.getElementById("height").value;
-            var region = document.getElementById("region").value;
-            var sector = document.getElementById("sector").value;
-            var qudurat = document.getElementById("qudurat").value;
-            var gpa = document.getElementById("gpa").value;
-            var notes = document.getElementById("notes").value;
             
-            var applied = document.querySelector('input[name="applied"]:checked').value;
-            var appNumber = (applied === "نعم") ? document.getElementById("appNumber").value : "لا يوجد";
-            
-            var serviceTypeElement = document.querySelector('input[name="serviceType"]:checked');
-            var serviceType = serviceTypeElement ? serviceTypeElement.value : "لم يتم التحديد";
-
             if (name === "" || phone === "") {
                 alert("يرجى كتابة الاسم ورقم الجوال");
+                if(name === "") document.getElementById("fullName").classList.add('input-error');
+                if(phone === "") document.getElementById("phone").classList.add('input-error');
                 return;
             }
 
+            // 3. التحقق من البيانات الإضافية (الهوية والأب)
             var wantExtra = document.querySelector('input[name="extraData"]:checked').value;
             var extraMessage = "";
 
             if (wantExtra === "نعم") {
-                var idNumber = document.getElementById("idNumber").value;
-                if (idNumber !== "" && (idNumber.charAt(0) !== "1" || idNumber.length !== 10)) {
-                    alert("رقم الهوية يجب أن يبدأ بـ 1 ومكون من 10 أرقام");
-                    return;
+                var idInput = document.getElementById("idNumber");
+                var fatherInput = document.getElementById("fatherId");
+                
+                // شرط رقم الهوية
+                if (idInput.value !== "") {
+                    if (idInput.value.charAt(0) !== "1" || idInput.value.length !== 10) {
+                        alert("⚠️ خطأ في رقم الهوية:\nيجب أن يبدأ بالرقم 1 ويتكون من 10 أرقام.");
+                        idInput.classList.add('input-error');
+                        idInput.focus();
+                        return;
+                    }
                 }
 
-                var fatherId = document.getElementById("fatherId").value;
-                var maritalStatus = document.getElementById("maritalStatus").value;
-                var district = document.getElementById("district").value;
-                var street = document.getElementById("street").value;
-                var buildingNo = document.getElementById("buildingNo").value;
-                var residencePlace = document.getElementById("residencePlace").value;
-                var originPlace = document.getElementById("originPlace").value;
-                var tribe = document.getElementById("tribe").value;
-                var bloodType = document.getElementById("bloodType").value;
-                var relativeName = document.getElementById("relativeName").value;
+                // شرط رقم هوية الأب
+                if (fatherInput.value !== "") {
+                    if (fatherInput.value.charAt(0) !== "1" || fatherInput.value.length !== 10) {
+                        alert("⚠️ خطأ في رقم هوية الأب:\nيجب أن يبدأ بالرقم 1 ويتكون من 10 أرقام.");
+                        fatherInput.classList.add('input-error');
+                        fatherInput.focus();
+                        return;
+                    }
+                }
 
-                // معالجة التاريخ
-                var dateType = document.querySelector('input[name="dateType"]:checked').value;
+                // تجهيز التاريخ
                 var dobValue = "";
-                
+                var dateType = document.querySelector('input[name="dateType"]:checked').value;
                 if (dateType === 'miladi') {
                     dobValue = document.getElementById('dobMiladi').value + " (ميلادي)";
                 } else {
@@ -439,32 +418,37 @@
 
                 extraMessage =  "---------------------------%0a" +
                                 "*📝 بيانات تفصيلية إضافية:*%0a" +
-                                "*📍 رقم الهوية:* " + idNumber + "%0a" +
+                                "*📍 رقم الهوية:* " + idInput.value + "%0a" +
+                                "*📍 رقم هوية الأب:* " + fatherInput.value + "%0a" +
                                 "*📍 تاريخ الميلاد:* " + dobValue + "%0a" +
-                                "*📍 الحالة الاجتماعية:* " + maritalStatus + "%0a" +
-                                "*📍 رقم هوية الأب:* " + fatherId + "%0a" +
-                                "*📍 اسم الحي:* " + district + "%0a" +
-                                "*📍 الشارع:* " + street + "%0a" +
-                                "*📍 رقم المبنى:* " + buildingNo + "%0a" +
-                                "*📍 منطقة السكن:* " + residencePlace + "%0a" +
-                                "*📍 منطقة النشأة:* " + originPlace + "%0a" +
-                                "*📍 القبيلة/العائلة:* " + tribe + "%0a" +
-                                "*📍 فصيلة الدم:* " + bloodType + "%0a" +
-                                "*📍 اسم أحد الأقرباء:* " + relativeName + "%0a";
+                                "*📍 الحالة الاجتماعية:* " + document.getElementById("maritalStatus").value + "%0a" +
+                                "*📍 اسم الحي:* " + document.getElementById("district").value + "%0a" +
+                                "*📍 الشارع:* " + document.getElementById("street").value + "%0a" +
+                                "*📍 رقم المبنى:* " + document.getElementById("buildingNo").value + "%0a" +
+                                "*📍 منطقة السكن:* " + document.getElementById("residencePlace").value + "%0a" +
+                                "*📍 منطقة النشأة:* " + document.getElementById("originPlace").value + "%0a" +
+                                "*📍 القبيلة/العائلة:* " + document.getElementById("tribe").value + "%0a" +
+                                "*📍 فصيلة الدم:* " + document.getElementById("bloodType").value + "%0a" +
+                                "*📍 اسم أحد الأقرباء:* " + document.getElementById("relativeName").value + "%0a";
             }
+
+            // 4. إرسال الرسالة
+            var applied = document.querySelector('input[name="applied"]:checked').value;
+            var appNumber = (applied === "نعم") ? document.getElementById("appNumber").value : "لا يوجد";
+            var serviceType = document.querySelector('input[name="serviceType"]:checked') ? document.querySelector('input[name="serviceType"]:checked').value : "لم يتم التحديد";
 
             var message = "*📍 طلب خدمة جديد*%0a" +
                           "---------------------------%0a" +
                           "*📍 الاسم:* " + name + "%0a" +
                           "*📍 الجوال:* " + phone + "%0a" +
-                          "*📧 البريد:* " + email + "%0a" +
-                          "*📍 الطول:* " + height + " سم%0a" +
-                          "*📍 الوزن:* " + weight + " كجم%0a" +
-                          "*📍 العمر:* " + age + " سنة%0a" +
-                          "*📍 المنطقة:* " + region + "%0a" +
-                          "*📍 القطاع:* " + sector + "%0a" +
-                          "*📍 القدرات:* " + qudurat + "%0a" +
-                          "*📍 المعدل:* " + gpa + "%0a" +
+                          "*📧 البريد:* " + document.getElementById("email").value + "%0a" +
+                          "*📍 الطول:* " + document.getElementById("height").value + " سم%0a" +
+                          "*📍 الوزن:* " + document.getElementById("weight").value + " كجم%0a" +
+                          "*📍 العمر:* " + document.getElementById("age").value + " سنة%0a" +
+                          "*📍 المنطقة:* " + document.getElementById("region").value + "%0a" +
+                          "*📍 القطاع:* " + document.getElementById("sector").value + "%0a" +
+                          "*📍 القدرات:* " + document.getElementById("qudurat").value + "%0a" +
+                          "*📍 المعدل:* " + document.getElementById("gpa").value + "%0a" +
                           "---------------------------%0a" +
                           "*هل قدم سابقاً؟:* " + applied + "%0a" +
                           "*📍 رقم الطلب:* " + appNumber + "%0a" +
@@ -472,7 +456,7 @@
                           "*📍 الخدمة المطلوبة:* %0a" + serviceType + "%0a" +
                           extraMessage + 
                           "---------------------------%0a" +
-                          "*📍 ملاحظات:* " + notes;
+                          "*📍 ملاحظات:* " + document.getElementById("notes").value;
 
             window.open("https://wa.me/966581926365?text=" + message, '_blank');
         }
