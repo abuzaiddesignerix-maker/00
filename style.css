@@ -964,3 +964,33 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         grid-template-columns: 1fr; /* عمود واحد في الموبايل */
     }
 }
+
+
+
+/* تنسيق الزر العائم في أسفل الشاشة */
+.btn-floating-bottom {
+    position: fixed; /* تثبيت بالنسبة للشاشة */
+    bottom: 30px;    /* يرتفع عن الحافة السفلية 30 بكسل */
+    left: 50%;       /* يوضع في منتصف العرض */
+    transform: translateX(-50%); /* ضبط التوسيط بدقة */
+    
+    z-index: 9999; /* لضمان ظهوره فوق كل شيء حتى الفوتر */
+    
+    /* تحسينات بصرية للزر العائم */
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4); /* ظل قوي ليبرز عن الخلفية */
+    border: 2px solid white !important; /* إطار أبيض ليفصله عن المحتوى تحته */
+    border-radius: 50px;
+    padding: 12px 40px;
+    width: auto !important; /* العرض حسب النص فقط */
+    min-width: 200px; /* أقل عرض مقبول */
+    
+    animation: slideUp 0.3s ease-out; /* حركة ناعمة للظهور */
+}
+
+/* حركة بسيطة لظهور الزر من الأسفل */
+@keyframes slideUp {
+    from { bottom: -60px; opacity: 0; }
+    to { bottom: 30px; opacity: 1; }
+}
