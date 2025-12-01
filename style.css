@@ -969,21 +969,35 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* الكود الجديد: الزر العائم الذكي */
 .btn-floating-bottom {
-    /* الفرق هنا: sticky بتخليه يلزق بس داخل حدود الأب بتاعه */
-    position: -webkit-sticky; 
-    position: sticky;
-    
-    /* المسافة من أسفل الشاشة */
-    bottom: 30px;
+    /* ... (كل الكود السابق كما هو) ... */
     
     /* لضمان ظهوره فوق الكروت */
     z-index: 999;
+
+    /* التوسيط الجديد (لأنه sticky) */
+    display: block; /* هذا ضروري للتوسيط بـ margin: auto */
+    margin: 0 auto 0 auto !important; /* الهوامش التلقائية (auto) ستقوم بتوسيطه أفقياً */
     
-    /* عشان يتوسط في نص الشاشة */
-    display: block;
-    margin: 0 auto; 
+    /* يجب حذف left: 50% و transform: translateX(-50%) */
+    /* ... */
+}
+
+/* ⚠️ ملاحظة هامة: في الكود الذي أرسلته، تم بالفعل استخدام margin: 0 auto; */
+/* ولكن لضمان عدم وجود أي override، سنضيف !important في الهوامش ونحذف أي توسيط سابق. */
+
+/* === استبدال الجزء الخاص بالتوسيط بهذا === */
+.btn-floating-bottom {
+    position: -webkit-sticky;  
+    position: sticky;
     
-    /* الشكل الجمالي (نفس القديم) */
+    bottom: 30px;
+    z-index: 999;
+    
+    /* 🌟 التعديل هنا: التوسيط المخصص للـ sticky 🌟 */
+    display: block; 
+    margin: 0 auto 0 auto !important; /* توسيط أفقي */
+    
+    /* باقي التنسيقات كما هي */
     background-color: var(--primary-color) !important;
     color: white !important;
     box-shadow: 0 5px 20px rgba(0,0,0,0.3);
@@ -993,12 +1007,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: fit-content;
     min-width: 200px;
     
-    /* الحركة */
     animation: slideUp 0.3s ease-out;
-}
-
-/* حركة الظهور */
-@keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
 }
