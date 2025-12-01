@@ -863,3 +863,104 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: bold;
 }
 
+/* =================================================
+   تنسيق قسم التعليقات (النسخة المنضبطة الاحترافية)
+   ================================================= */
+
+/* 1. الشبكة (الحاوية) */
+.reviews-grid {
+    display: grid;
+    /* هذا السطر يضمن أن الأعمدة تتجاوب مع الشاشة (أقل عرض 300 بيكسل) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px; /* المسافة بين الكروت */
+    
+    /* ⭐ السحر هنا: توسيط العناصر لو كان عددهم قليل (مثل حالة التعليقين) */
+    justify-content: center;
+    
+    margin-bottom: 25px; /* مسافة صغيرة ومناسبة بين آخر تعليق والزر */
+    padding: 5px; /* مسافة أمان */
+}
+
+/* 2. تصميم الكارت (البطاقة) */
+.review-card {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* ظل هادئ */
+    border: 1px solid #eee;
+    
+    /* ⭐ لضمان أن جميع الكروت بنفس الطول وتنسيق المحتوى داخلياً */
+    height: 100%; 
+    display: flex;
+    flex-direction: column; /* رص المحتوى فوق بعض */
+    justify-content: space-between; /* توزيع المسافات ليكون الاسم دائماً في الأسفل */
+    
+    text-align: right;
+    transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color); /* تلوين الإطار عند اللمس */
+}
+
+/* 3. محتوى الكارت */
+.review-card .stars {
+    color: #f1c40f; /* لون ذهبي للنجوم */
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.review-card p {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.client-name {
+    display: block;
+    color: var(--primary-color);
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: auto; /* يدفع الاسم لأسفل الكارت دائماً */
+    border-top: 1px solid #f9f9f9;
+    padding-top: 10px;
+}
+
+/* 4. زر العرض (Show More) */
+.reviews-container div[style*="text-align: center"] {
+    margin-top: 0 !important; /* إلغاء أي هوامش زائدة للحاوية */
+}
+
+.btn-reviews {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 10px 35px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px; /* مسافة بسيطة فوق الزر */
+}
+
+.btn-reviews:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* كلاس الإخفاء (مهم جداً لعمل الجافاسكريبت) */
+.hidden-review {
+    display: none !important;
+}
+
+/* 5. ضبط الموبايل */
+@media (max-width: 768px) {
+    .reviews-grid {
+        grid-template-columns: 1fr; /* عمود واحد في الموبايل */
+    }
+}
