@@ -466,49 +466,37 @@
     </footer>
 
  <script>
-        // دالة التحكم في ظهور التعليقات
-        function initReviews() {
-            const reviews = document.querySelectorAll('.review-card');
-            // إخفاء كل التعليقات ما عدا أول 2
-            for (let i = 2; i < reviews.length; i++) {
-                reviews[i].classList.add('hidden-review');
-            }
-        }
+    // 💡 هذا الكود النهائي (يحتوي على نظام الفرامل الذكي)
+    
+    let scrollListenerAdded = false;
 
-        function toggleReviews() {
-            const reviews = document.querySelectorAll('.review-card');
-            const btn = document.getElementById('viewMoreBtn');
-            const isExpanded = btn.getAttribute('data-expanded') === 'true';
-
-            if (!isExpanded) {
-                // إظهار الكل
-                for (let i = 2; i < reviews.length; i++) {
-                    reviews[i].classList.remove('hidden-review');
-                }
-                btn.innerText = "عرض أقل";
-                btn.setAttribute('data-expanded', 'true');
-            } else {
-                // إخفاء ما عدا أول 2
-                for (let i = 2; i < reviews.length; i++) {
-                    reviews[i].classList.add('hidden-review');
-                }
-                btn.innerText = "عرض جميع آراء العملاء (48 تعليق)";
-                btn.setAttribute('data-expanded', 'false');
-                
-                document.querySelector('.reviews-container').scrollIntoView({behavior: 'smooth'});
-            }
-        }
-
-        // تشغيل الدالة عند تحميل الصفحة لإخفاء الزيادة
-        document.addEventListener('DOMContentLoaded', initReviews);
-    </script>    
-
-    <script>
     function initReviews() {
         const reviews = document.querySelectorAll('.review-card');
         // إخفاء كل التعليقات ما عدا أول 2
         for (let i = 2; i < reviews.length; i++) {
             reviews[i].classList.add('hidden-review');
+        }
+    }
+
+    // دالة مراقبة التمرير (الفرامل لمنع الزر من الوصول للفوتر)
+    function handleScroll() {
+        const btn = document.getElementById('viewMoreBtn');
+        const section = document.querySelector('.reviews-section'); 
+        
+        if (!section || !btn || btn.getAttribute('data-expanded') !== 'true') return;
+
+        // نحسب مكان أسفل السكشن بالنسبة للشاشة
+        const sectionBottom = section.getBoundingClientRect().bottom;
+        const windowHeight = window.innerHeight;
+
+        // إذا وصلنا لنهاية السكشن (أو اقتربنا منه)
+        if (sectionBottom <= windowHeight + 80) { 
+            btn.classList.remove('btn-floating-bottom');
+            btn.classList.add('btn-static');
+        } else {
+            // نحن ما زلنا في منتصف القائمة، اجعل الزر يطير
+            btn.classList.add('btn-floating-bottom');
+            btn.classList.remove('btn-static');
         }
     }
 
@@ -519,36 +507,44 @@
         const isExpanded = btn.getAttribute('data-expanded') === 'true';
 
         if (!isExpanded) {
-            // 🔽 حالة التوسيع (فتح القائمة)
-            
-            // 1. إظهار التعليقات
+            // 🔽 فتح القائمة (ووضع الطيران)
             for (let i = 2; i < reviews.length; i++) {
                 reviews[i].classList.remove('hidden-review');
             }
 
-            // 2. تحويل الزر إلى عائم في الأسفل
+            btn.innerText = "إغلاق التعليقات ✖";
+            btn.setAttribute('data-expanded', 'true');
+            
+            // تشغيل وضع الطيران فوراً
             btn.classList.add('btn-floating-bottom');
             
-            // 3. تغيير النص وإضافة سهم يشير لأعلى
-            btn.innerText = "إغلاق التعليقات ✖"; // أو "عرض أقل"
-            btn.setAttribute('data-expanded', 'true');
+            // إضافة مراقب التمرير لأول مرة
+            if (!scrollListenerAdded) {
+                window.addEventListener('scroll', handleScroll);
+                scrollListenerAdded = true;
+            }
+            
+            // التأكد من وضع الفرامل بشكل صحيح عند الفتح
+            handleScroll(); 
 
         } else {
-            // 🔼 حالة الإغلاق (الرجوع للوضع الطبيعي)
-
-            // 1. إخفاء التعليقات الزائدة
+            // 🔼 إغلاق القائمة (والعودة للأعلى)
             for (let i = 2; i < reviews.length; i++) {
                 reviews[i].classList.add('hidden-review');
             }
 
-            // 2. إلغاء وضع الطيران (يعود لمكانه الطبيعي في الصفحة)
+            // إزالة جميع كلاسات الحركة
             btn.classList.remove('btn-floating-bottom');
+            btn.classList.remove('btn-static');
 
-            // 3. تغيير النص للأصل
             btn.innerText = "عرض جميع آراء العملاء (48 تعليق)";
             btn.setAttribute('data-expanded', 'false');
             
-            // 4. تمرير الشاشة للعودة لبداية قسم التعليقات
+            // إيقاف مراقبة التمرير
+            window.removeEventListener('scroll', handleScroll);
+            scrollListenerAdded = false;
+
+            // العودة لبداية القسم
             reviewsContainer.scrollIntoView({behavior: 'smooth', block: 'center'});
         }
     }
