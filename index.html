@@ -73,6 +73,76 @@
         </div>
     </section>
 
+<section class="achievements-section">
+        
+        <div class="stats-container">
+            <h2 class="section-title">أرقام نفتخر بها</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <h3 dir="ltr">+<span id="visitorCount">500</span></h3>
+                    <p>عدد الزوار والمستفيدين</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>10 سنوات</h3>
+                    <p>خبرة في العمل العام</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-medal"></i>
+                    <h3>7 سنوات</h3>
+                    <p>خبرة بالقطاعات العسكرية</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="reviews-container">
+            <h2 class="section-title" style="margin-top: 60px;">
+                آراء عملائنا <span class="review-count">(42 تعليق ⭐)</span>
+            </h2>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"أفضل موقع تعاملت معه، مصداقية وسرعة في الإنجاز."</p>
+                    <span class="client-name">- عميل سابق</span>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"الله يسعدكم، جاب لولدي القبول النهائي بعد ما فقدنا الأمل."</p>
+                    <span class="client-name">- أبو عبدالله</span>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"ساعدني بالقبول المبدئي والنهائي، شغل احترافي جداً."</p>
+                    <span class="client-name">- محمد العتيبي</span>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"عداني بالفحص الحمدلله بفضل توجيهاتكم."</p>
+                    <span class="client-name">- فهد</span>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"الله يرزقك ويفتح عليك، ما قصرت معي."</p>
+                    <span class="client-name">- أم خالد</span>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"مضمون وأنصح بالتعامل معه، ثقة وأمانة."</p>
+                    <span class="client-name">- سعد القحطاني</span>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="reviews.html" class="btn-main btn-reviews">
+                    عرض جميع آراء العملاء (48 تعليق)
+                </a>
+            </div>
+        </div>
+
+    </section>
+    
     <section>
         <h2 class="section-title">القطاعات التي نخدمها</h2>
         <div class="logos-grid">
@@ -184,3 +254,26 @@
 
 </body>
 </html>
+
+<script>
+        function updateVisitorCount() {
+            // تاريخ بداية العداد (تم ضبطه ليبدأ الحساب من 1 يناير 2024)
+            // يمكنك تغيير التاريخ لزيادة الرقم أو تقليله
+            const startDate = new Date("2024-01-01"); 
+            const today = new Date();
+
+            // حساب الفرق في الأيام بين اليوم وتاريخ البداية
+            const timeDiff = Math.abs(today - startDate);
+            const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
+
+            // المعادلة: ابدأ بـ 500 + (عدد الأيام التي مرت × 5 زوار)
+            // النتيجة: الرقم يزيد 5 كل يوم يمر
+            let currentVisitors = 500 + (daysDiff * 5);
+
+            // عرض الرقم في الموقع
+            document.getElementById("visitorCount").innerText = currentVisitors;
+        }
+
+        // تشغيل الدالة فور تحميل الصفحة
+        updateVisitorCount();
+    </script>
