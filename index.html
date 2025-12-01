@@ -504,28 +504,57 @@
     </script>    
 
     <script>
-        function updateVisitorCount() {
-            // تاريخ بداية العداد (تم تعديله ليبدأ من تاريخ قريب جداً)
-            // هذا سيجعل الرقم يبدأ من 500 ويزيد 5 يومياً من الآن فصاعداً
-            const startDate = new Date("2025-12-01"); 
-            const today = new Date();
-
-            // حساب الفرق في الأيام
-            let timeDiff = Math.abs(today - startDate);
-            let daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
-
-            // إذا كان التاريخ في المستقبل (بالخطأ)، نعتبر الفرق 0
-            if (today < startDate) { daysDiff = 0; }
-
-            // المعادلة: 500 (الأساس) + (5 زوار × عدد الأيام)
-            let currentVisitors = 500 + (daysDiff * 5);
-
-            // عرض الرقم
-            document.getElementById("visitorCount").innerText = currentVisitors;
+    function initReviews() {
+        const reviews = document.querySelectorAll('.review-card');
+        // إخفاء كل التعليقات ما عدا أول 2
+        for (let i = 2; i < reviews.length; i++) {
+            reviews[i].classList.add('hidden-review');
         }
+    }
 
-        updateVisitorCount();
-    </script>
+    function toggleReviews() {
+        const reviews = document.querySelectorAll('.review-card');
+        const btn = document.getElementById('viewMoreBtn');
+        const reviewsContainer = document.querySelector('.reviews-container');
+        const isExpanded = btn.getAttribute('data-expanded') === 'true';
 
+        if (!isExpanded) {
+            // 🔽 حالة التوسيع (فتح القائمة)
+            
+            // 1. إظهار التعليقات
+            for (let i = 2; i < reviews.length; i++) {
+                reviews[i].classList.remove('hidden-review');
+            }
+
+            // 2. تحويل الزر إلى عائم في الأسفل
+            btn.classList.add('btn-floating-bottom');
+            
+            // 3. تغيير النص وإضافة سهم يشير لأعلى
+            btn.innerText = "إغلاق التعليقات ✖"; // أو "عرض أقل"
+            btn.setAttribute('data-expanded', 'true');
+
+        } else {
+            // 🔼 حالة الإغلاق (الرجوع للوضع الطبيعي)
+
+            // 1. إخفاء التعليقات الزائدة
+            for (let i = 2; i < reviews.length; i++) {
+                reviews[i].classList.add('hidden-review');
+            }
+
+            // 2. إلغاء وضع الطيران (يعود لمكانه الطبيعي في الصفحة)
+            btn.classList.remove('btn-floating-bottom');
+
+            // 3. تغيير النص للأصل
+            btn.innerText = "عرض جميع آراء العملاء (48 تعليق)";
+            btn.setAttribute('data-expanded', 'false');
+            
+            // 4. تمرير الشاشة للعودة لبداية قسم التعليقات
+            reviewsContainer.scrollIntoView({behavior: 'smooth', block: 'center'});
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', initReviews);
+</script>
+    
 </body>
 </html>
