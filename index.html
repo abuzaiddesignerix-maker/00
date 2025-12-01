@@ -466,35 +466,42 @@
     </footer>
 
  <script>
-    // 💡 هذا الكود النهائي (يحتوي على نظام الفرامل الذكي)
-    
     let scrollListenerAdded = false;
 
     function initReviews() {
         const reviews = document.querySelectorAll('.review-card');
-        // إخفاء كل التعليقات ما عدا أول 2
         for (let i = 2; i < reviews.length; i++) {
             reviews[i].classList.add('hidden-review');
         }
     }
 
-    // دالة مراقبة التمرير (الفرامل لمنع الزر من الوصول للفوتر)
+    // دالة مراقبة التمرير (الفرامل العلوية والسفلية)
     function handleScroll() {
         const btn = document.getElementById('viewMoreBtn');
         const section = document.querySelector('.reviews-section'); 
         
         if (!section || !btn || btn.getAttribute('data-expanded') !== 'true') return;
 
-        // نحسب مكان أسفل السكشن بالنسبة للشاشة
-        const sectionBottom = section.getBoundingClientRect().bottom;
+        // إحداثيات القسم بالنسبة للشاشة
+        const rect = section.getBoundingClientRect();
         const windowHeight = window.innerHeight;
 
-        // إذا وصلنا لنهاية السكشن (أو اقتربنا منه)
-        if (sectionBottom <= windowHeight + 80) { 
+        // 1. الشرط السفلي (الفرامل الخلفية): عشان ما يغطيش الفوتر
+        // إذا أسفل السكشن وصل لنهاية الشاشة
+        const hitBottomBoundary = rect.bottom <= windowHeight + 50;
+
+        // 2. الشرط العلوي (الفرامل الأمامية): 🛑 هذا هو الجديد
+        // إذا قمة السكشن نزلت لتحت (معناه إنك طلعت لفوق وخرجت من القسم)
+        // الرقم 100 هو هامش، يعني أول ما تقرب تطلع من القسم الزر يرجع مكانه
+        const hitTopBoundary = rect.top >= windowHeight - 150;
+
+        // إذا تحقق أي من الشرطين (وصلت للآخر تحت أو طلعت للأول فوق)
+        if (hitBottomBoundary || hitTopBoundary) { 
+            // وقف الطيران (ارجع زر عادي)
             btn.classList.remove('btn-floating-bottom');
             btn.classList.add('btn-static');
         } else {
-            // نحن ما زلنا في منتصف القائمة، اجعل الزر يطير
+            // خليك طاير (أنت لسه جوه القسم)
             btn.classList.add('btn-floating-bottom');
             btn.classList.remove('btn-static');
         }
@@ -507,44 +514,40 @@
         const isExpanded = btn.getAttribute('data-expanded') === 'true';
 
         if (!isExpanded) {
-            // 🔽 فتح القائمة (ووضع الطيران)
+            // 🔽 فتح
             for (let i = 2; i < reviews.length; i++) {
                 reviews[i].classList.remove('hidden-review');
             }
-
             btn.innerText = "إغلاق التعليقات ✖";
             btn.setAttribute('data-expanded', 'true');
             
-            // تشغيل وضع الطيران فوراً
+            // تفعيل الطيران
             btn.classList.add('btn-floating-bottom');
             
-            // إضافة مراقب التمرير لأول مرة
             if (!scrollListenerAdded) {
                 window.addEventListener('scroll', handleScroll);
+                window.addEventListener('resize', handleScroll); // تحديث عند تغيير حجم الشاشة
                 scrollListenerAdded = true;
             }
-            
-            // التأكد من وضع الفرامل بشكل صحيح عند الفتح
             handleScroll(); 
 
         } else {
-            // 🔼 إغلاق القائمة (والعودة للأعلى)
+            // 🔼 إغلاق
             for (let i = 2; i < reviews.length; i++) {
                 reviews[i].classList.add('hidden-review');
             }
-
-            // إزالة جميع كلاسات الحركة
+            
+            // إلغاء كل حالات الطيران
             btn.classList.remove('btn-floating-bottom');
             btn.classList.remove('btn-static');
 
             btn.innerText = "عرض جميع آراء العملاء (48 تعليق)";
             btn.setAttribute('data-expanded', 'false');
             
-            // إيقاف مراقبة التمرير
             window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleScroll);
             scrollListenerAdded = false;
 
-            // العودة لبداية القسم
             reviewsContainer.scrollIntoView({behavior: 'smooth', block: 'center'});
         }
     }
