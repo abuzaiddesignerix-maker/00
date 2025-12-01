@@ -967,30 +967,38 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 
 
-/* تنسيق الزر العائم في أسفل الشاشة */
+/* الكود الجديد: الزر العائم الذكي */
 .btn-floating-bottom {
-    position: fixed; /* تثبيت بالنسبة للشاشة */
-    bottom: 30px;    /* يرتفع عن الحافة السفلية 30 بكسل */
-    left: 50%;       /* يوضع في منتصف العرض */
-    transform: translateX(-50%); /* ضبط التوسيط بدقة */
+    /* الفرق هنا: sticky بتخليه يلزق بس داخل حدود الأب بتاعه */
+    position: -webkit-sticky; 
+    position: sticky;
     
-    z-index: 9999; /* لضمان ظهوره فوق كل شيء حتى الفوتر */
+    /* المسافة من أسفل الشاشة */
+    bottom: 30px;
     
-    /* تحسينات بصرية للزر العائم */
+    /* لضمان ظهوره فوق الكروت */
+    z-index: 999;
+    
+    /* عشان يتوسط في نص الشاشة */
+    display: block;
+    margin: 0 auto; 
+    
+    /* الشكل الجمالي (نفس القديم) */
     background-color: var(--primary-color) !important;
     color: white !important;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.4); /* ظل قوي ليبرز عن الخلفية */
-    border: 2px solid white !important; /* إطار أبيض ليفصله عن المحتوى تحته */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    border: 2px solid white !important;
     border-radius: 50px;
     padding: 12px 40px;
-    width: auto !important; /* العرض حسب النص فقط */
-    min-width: 200px; /* أقل عرض مقبول */
+    width: fit-content;
+    min-width: 200px;
     
-    animation: slideUp 0.3s ease-out; /* حركة ناعمة للظهور */
+    /* الحركة */
+    animation: slideUp 0.3s ease-out;
 }
 
-/* حركة بسيطة لظهور الزر من الأسفل */
+/* حركة الظهور */
 @keyframes slideUp {
-    from { bottom: -60px; opacity: 0; }
-    to { bottom: 30px; opacity: 1; }
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
