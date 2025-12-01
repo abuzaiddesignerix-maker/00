@@ -812,3 +812,126 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top: 25px !important; /* مسافة 25 بيكسل تفصله عن الكلام */
     display: inline-block; /* لضمان إن المسافة تتحسب صح */
 }
+
+/* --- تنسيق قسم الإنجازات والتعليقات --- */
+.achievements-section {
+    padding: 60px 5%;
+    background-color: #f8f9fa; /* خلفية مختلفة قليلاً للتميز */
+    text-align: center;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+/* تنسيق الأرقام */
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 15px;
+    width: 250px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    border-bottom: 5px solid var(--primary-color);
+}
+
+.stat-item:hover {
+    transform: translateY(-10px);
+}
+
+.stat-item i {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.stat-item h3 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.stat-item p {
+    font-size: 1rem;
+    color: #666;
+    font-weight: bold;
+}
+
+/* تنسيق التعليقات */
+.review-count {
+    color: var(--whatsapp-color);
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.review-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: right;
+    border: 1px solid #eee;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.stars {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.review-card p {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.client-name {
+    display: block;
+    color: #888;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+/* تنسيق زر عرض كل التعليقات */
+.btn-reviews {
+    background-color: var(--text-dark); /* لون مختلف لتمييزه */
+    border: none;
+    margin-top: 20px;
+}
+.btn-reviews:hover {
+    background-color: var(--primary-color);
+}
+
+/* للموبايل */
+@media (max-width: 768px) {
+    .stats-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .stat-item {
+        width: 100%;
+    }
+}
