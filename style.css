@@ -942,28 +942,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-/* عدّل هذا التنسيق في ملف style.css */
-
-.review-card {
-    /* (تنسيقات الخلفية والحجم كما أرسلناها سابقاً) */
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 25px;
-    
-    /* 1. جعل الزاوية السفلية أكثر تميزاً (اختياري) */
-    border-bottom: 5px solid #00a08e; /* لون أخضر بحري جميل */
-    
-    /* 2. تحسين الظل */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
-    
-    /* 3. إضافة انتقال حركي ناعم */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
-}
-
-/* 4. إضافة تأثير عند مرور الماوس (Hover) */
-.review-card:hover {
-    transform: translateY(-5px); /* رفع البطاقة قليلاً */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* ظل أقوى لجذب الانتباه */
-}
-
 
