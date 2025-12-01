@@ -967,45 +967,54 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 
 
-/* الكود الجديد: الزر العائم الذكي */
+/* ===========================================
+   كود الزر العائم والواقف (النظام الذكي)
+   =========================================== */
+   
+/* 1. الكلاس المسؤول عن طيران الزر (Floating) */
 .btn-floating-bottom {
-    /* ... (كل الكود السابق كما هو) ... */
-    
-    /* لضمان ظهوره فوق الكروت */
-    z-index: 999;
-
-    /* التوسيط الجديد (لأنه sticky) */
-    display: block; /* هذا ضروري للتوسيط بـ margin: auto */
-    margin: 0 auto 0 auto !important; /* الهوامش التلقائية (auto) ستقوم بتوسيطه أفقياً */
-    
-    /* يجب حذف left: 50% و transform: translateX(-50%) */
-    /* ... */
-}
-
-/* ⚠️ ملاحظة هامة: في الكود الذي أرسلته، تم بالفعل استخدام margin: 0 auto; */
-/* ولكن لضمان عدم وجود أي override، سنضيف !important في الهوامش ونحذف أي توسيط سابق. */
-
-/* === استبدال الجزء الخاص بالتوسيط بهذا === */
-.btn-floating-bottom {
-    position: -webkit-sticky;  
-    position: sticky;
-    
+    position: fixed;
     bottom: 30px;
-    z-index: 999;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
     
-    /* 🌟 التعديل هنا: التوسيط المخصص للـ sticky 🌟 */
-    display: block; 
-    margin: 0 auto 0 auto !important; /* توسيط أفقي */
-    
-    /* باقي التنسيقات كما هي */
+    /* التنسيق الجمالي */
     background-color: var(--primary-color) !important;
     color: white !important;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
     border: 2px solid white !important;
     border-radius: 50px;
     padding: 12px 40px;
-    width: fit-content;
+    width: auto !important;
     min-width: 200px;
+    display: block;
     
+    /* حركة ناعمة */
+    transition: all 0.3s ease;
     animation: slideUp 0.3s ease-out;
+}
+
+/* 2. كلاس عادي جداً لما الزر يوقف (Static) */
+.btn-static {
+    /* يرجع لوضعه الطبيعي في آخر القسم */
+    position: relative;
+    display: block;
+    margin: 20px auto 0 auto; /* توسيط عادي */
+    
+    /* الشكل */
+    background-color: var(--primary-color);
+    color: white;
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    padding: 12px 40px;
+    width: fit-content;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* حركة الظهور */
+@keyframes slideUp {
+    from { bottom: -60px; opacity: 0; }
+    to { bottom: 30px; opacity: 1; }
 }
