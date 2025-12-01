@@ -257,23 +257,24 @@
 
 <script>
         function updateVisitorCount() {
-            // تاريخ بداية العداد (تم ضبطه ليبدأ الحساب من 1 يناير 2024)
-            // يمكنك تغيير التاريخ لزيادة الرقم أو تقليله
-            const startDate = new Date("2024-01-01"); 
+            // تاريخ بداية العداد (تم تعديله ليبدأ من تاريخ قريب جداً)
+            // هذا سيجعل الرقم يبدأ من 500 ويزيد 5 يومياً من الآن فصاعداً
+            const startDate = new Date("2025-10-01"); 
             const today = new Date();
 
-            // حساب الفرق في الأيام بين اليوم وتاريخ البداية
-            const timeDiff = Math.abs(today - startDate);
-            const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
+            // حساب الفرق في الأيام
+            let timeDiff = Math.abs(today - startDate);
+            let daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
 
-            // المعادلة: ابدأ بـ 500 + (عدد الأيام التي مرت × 5 زوار)
-            // النتيجة: الرقم يزيد 5 كل يوم يمر
+            // إذا كان التاريخ في المستقبل (بالخطأ)، نعتبر الفرق 0
+            if (today < startDate) { daysDiff = 0; }
+
+            // المعادلة: 500 (الأساس) + (5 زوار × عدد الأيام)
             let currentVisitors = 500 + (daysDiff * 5);
 
-            // عرض الرقم في الموقع
+            // عرض الرقم
             document.getElementById("visitorCount").innerText = currentVisitors;
         }
 
-        // تشغيل الدالة فور تحميل الصفحة
         updateVisitorCount();
     </script>
