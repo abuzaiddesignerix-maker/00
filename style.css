@@ -965,3 +965,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transform: translateY(-5px); /* رفع البطاقة قليلاً */
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* ظل أقوى لجذب الانتباه */
 }
+
+
+/* --- تصحيح المسافات في شبكة التعليقات --- */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px; /* قللنا المسافة بين الكروت لـ 15 بيكسل بس */
+    margin-bottom: 20px; /* مسافة صغيرة تحت الشبكة */
+}
+
+/* تصحيح المسافة فوق زر "عرض جميع الآراء" */
+.reviews-container div[style*="text-align: center"] {
+    margin-top: 20px !important; /* إجبار المسافة تكون صغيرة */
+}
+
+/* تحسين شكل الكارت */
+.review-card {
+    margin-bottom: 0; /* إلغاء أي هوامش زيادة للكارت نفسه */
+    height: 100%; /* عشان الكروت كلها تبقى نفس الطول */
+}
