@@ -935,3 +935,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         width: 100%;
     }
 }
+
+/* كلاس للإخفاء والظهور */
+.hidden-review {
+    display: none;
+}
