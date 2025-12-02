@@ -1121,3 +1121,63 @@ html {
         word-break: break-all;
     }
 }
+
+
+/* ========================================================
+   🚨 تصحيح الأحجام الضخمة للموبايل (Emergency Mobile Fix)
+   ======================================================== */
+
+@media (max-width: 768px) {
+    
+    /* 1. تصغير النصوص الكبيرة في البانر الرئيسي */
+    .hero h1 {
+        font-size: 1.7rem !important; /* كان 3rem وده ضخم جداً */
+        margin-bottom: 10px !important;
+    }
+    
+    .hero p {
+        font-size: 0.95rem !important; /* تصغير نص الوصف */
+        line-height: 1.5 !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* 2. تصغير كروت الخدمات الضخمة */
+    .service-card {
+        padding: 20px 15px !important; /* تقليل الحشو الداخلي للنصف */
+    }
+
+    .service-content h2 {
+        font-size: 1.3rem !important; /* تصغير عنوان الخدمة */
+        margin-bottom: 10px !important;
+    }
+
+    .service-list li {
+        font-size: 0.9rem !important; /* تصغير قائمة المميزات */
+        padding-right: 20px !important;
+        margin-bottom: 5px !important;
+    }
+
+    /* 3. تصغير زر "قدم طلب الآن" الضخم */
+    .service-card .btn-main, 
+    .hero .btn-main {
+        padding: 10px 30px !important; /* تقليل حجم الزر */
+        font-size: 1rem !important; /* تصغير خط الزر */
+        width: 100% !important; /* يملأ العرض عشان يكون شكله مرتب */
+        justify-content: center !important;
+    }
+
+    /* 4. تصغير العناوين الرئيسية للأقسام */
+    .section-title {
+        font-size: 1.5rem !important; /* تصغير كلمة "القطاعات" و"الخدمات" */
+        margin-bottom: 30px !important;
+    }
+
+    /* 5. لم الكارت بتاع "عن الموقع" */
+    .about-text h2 {
+        font-size: 1.6rem !important;
+    }
+    
+    .about-text p {
+        font-size: 0.95rem !important;
+    }
+}
