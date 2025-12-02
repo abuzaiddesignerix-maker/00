@@ -1019,3 +1019,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         justify-content: center;
     }
 }
+
+
+
+/* --- إضافة مسافة فوق زر التقديم في صفحة الخدمات --- */
+.service-card .btn-main {
+    margin-top: 20px !important; /* مسافة 20 بيكسل تفصله عن النص */
+    display: inline-flex; /* لضمان احترام المسافة */
+}
