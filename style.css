@@ -1053,3 +1053,71 @@ html {
         scroll-margin-top: 150px; /* مسافة ثابتة وكافية للموبايل */
     }
 }
+
+/* ========================================================
+   تنسيق أيقونات صفحة تواصل معنا (الواتس والتيك توك)
+   ======================================================== */
+
+.contact-header-section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* التنسيق العام (للكمبيوتر) */
+.contact-header-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; 
+}
+
+/* تنسيق الصناديق */
+.contact-box {
+    width: 200px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-box i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.whatsapp-icon { color: #25d366; }
+.tiktok-icon { color: #000; }
+
+
+/* 📱 تنسيق خاص للموبايل فقط (لجعلهم بجانب بعض وصغار) */
+@media (max-width: 768px) {
+    
+    .contact-header-grid {
+        flex-wrap: nowrap; /* إجبار العناصر تكون في سطر واحد */
+        gap: 5px; /* مسافة صغيرة جداً بينهم */
+        padding: 0 5px;
+    }
+
+    .contact-box {
+        width: 32%; /* كل واحد يأخذ ثلث المساحة */
+        min-width: 0; 
+        padding: 10px 2px !important;
+        height: 110px !important; 
+    }
+
+    .contact-box i {
+        font-size: 1.8rem; /* تصغير الأيقونة */
+        margin-bottom: 5px;
+    }
+
+    .contact-box h3 {
+        font-size: 0.7rem; /* تصغير العنوان */
+        margin-bottom: 0;
+    }
+
+    .contact-box p {
+        font-size: 0.6rem; /* تصغير الرقم/المعرف */
+        word-break: break-all;
+    }
+}
