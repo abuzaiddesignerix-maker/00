@@ -262,7 +262,7 @@ section {
     font-size: 1.1rem;
 }
 
-/* --- زر الواتساب (أيقونة دائرية فقط) --- */
+/* --- زر الواتساب (أيقونة دائرية + حركة نبض) --- */
 .sticky-whatsapp {
     position: fixed;
     bottom: 30px;
@@ -271,30 +271,48 @@ section {
     color: white;
     
     /* جعل الزر دائرياً */
-    width: 60px;  /* عرض ثابت */
-    height: 60px; /* ارتفاع نفس العرض */
-    border-radius: 50%; /* تحويل المربع لدائرة */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     
-    /* توسيط الأيقونة داخل الدائرة */
+    /* التوسيط */
     display: flex;
     justify-content: center;
     align-items: center;
     
-    /* تكبير حجم الأيقونة */
-    font-size: 30px; 
+    /* حجم الأيقونة */
+    font-size: 30px;
     
     z-index: 2000;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    transition: all 0.3s ease;
+    
+    /* ⚡ إضافة حركة النبض (تتكرر كل ثانيتين) */
+    animation: pulse-green 2s infinite;
 }
 
-/* حركة بسيطة عند مرور الماوس */
+/* تعريف حركة النبض */
+@keyframes pulse-green {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        transform: scale(1.1); /* يكبر قليلاً */
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); /* الظل يختفي للخارج */
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* عند مرور الماوس: يثبت الزر ويكبر قليلاً */
 .sticky-whatsapp:hover {
-    transform: scale(1.1) rotate(10deg); /* تكبير ودوران بسيط */
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    animation: none; /* إيقاف الحركة */
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* تعديل للموبايل (اختياري: تصغيره قليلاً) */
+/* تنسيق الموبايل */
 @media (max-width: 768px) {
     .sticky-whatsapp {
         width: 50px;
@@ -304,7 +322,6 @@ section {
         left: 20px;
     }
 }
-
 /* --- الفوتر الرئيسي --- */
 .main-footer {
     background-color: var(--primary-color);
