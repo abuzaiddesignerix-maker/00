@@ -1181,3 +1181,93 @@ html {
         font-size: 0.95rem !important;
     }
 }
+
+/* ========================================================
+   🚀 الإصلاح النهائي الشامل للموبايل (انسخ هذا في آخر الملف)
+   ======================================================== */
+
+@media (max-width: 768px) {
+
+    /* 1. منع الاهتزاز الجانبي للصفحة */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    /* 2. إصلاح تداخل الكلام في قائمة الخدمات (أهم تعديل) */
+    /* المشكلة كانت أن القائمة تحاول الظهور في عمودين، هنا نجبرها تكون عمود واحد */
+    .service-list {
+        grid-template-columns: 1fr !important; 
+        gap: 10px !important;
+    }
+
+    /* 3. تحسين الهيدر الثابت */
+    header {
+        padding: 10px 5% !important;
+        flex-direction: column;
+        justify-content: center;
+        height: auto;
+        min-height: 80px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px !important;
+        margin-top: 5px;
+    }
+
+    nav a {
+        font-size: 0.85rem !important;
+        padding: 6px 10px !important;
+    }
+
+    /* 4. ضبط مساحة البانر الرئيسي عشان الكلام ما يغطيش عليه الهيدر */
+    .hero {
+        padding-top: 140px !important; /* مساحة للهيدر */
+        height: auto !important;       /* إلغاء الطول الثابت */
+        min-height: 60vh;              /* طول مناسب للموبايل */
+        background-position: center top;
+        padding-bottom: 50px;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.4 !important;
+    }
+
+    /* 5. تحسين عرض النماذج (Forms) في الموبايل */
+    .form-container {
+        padding: 20px 15px !important;
+        width: 100% !important;
+    }
+
+    .form-row {
+        flex-direction: column; /* الخانات تيجي تحت بعض مش جنب بعض */
+        gap: 0 !important;
+    }
+    
+    .form-group {
+        margin-bottom: 12px !important;
+    }
+
+    /* 6. تحسين الفوتر */
+    .footer-container {
+        padding: 0 15px !important;
+    }
+    
+    .footer-col {
+        margin-bottom: 30px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding-bottom: 20px;
+    }
+
+    /* 7. ضبط زر الواتساب العائم */
+    .sticky-whatsapp {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 28px !important;
+        bottom: 20px !important;
+        left: 20px !important;
+    }
+}
