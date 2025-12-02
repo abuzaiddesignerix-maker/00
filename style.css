@@ -1,6 +1,6 @@
-/* style.css - النسخة النهائية المعدلة */
+/* style.css - النسخة النهائية المحسنة للموبايل والكمبيوتر */
 
-/* 1. استيراد الخط (لازم يكون أول سطر) */
+/* 1. استيراد الخط */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
 
 /* 2. المتغيرات والألوان */
@@ -94,7 +94,7 @@ nav a:hover {
     background: linear-gradient(rgba(12, 36, 97, 0.8), rgba(12, 36, 97, 0.6)), url('hero-bg.png');
     background-size: cover;
     background-position: center;
-    height: 85vh;
+    height: 85vh; /* ارتفاع كامل للشاشات الكبيرة */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -136,7 +136,7 @@ nav a:hover {
     transform: translateY(-5px);
 }
 
-/* --- الأقسام والبطاقات --- */
+/* --- الأقسام والبطاقات العامة --- */
 section {
     padding: 80px 5%;
     max-width: 1300px;
@@ -248,7 +248,6 @@ section {
     padding-right: 25px;
 }
 
-/* علامة الصح (الافتراضية) */
 .service-list li::before {
     content: '✔';
     position: absolute;
@@ -257,14 +256,13 @@ section {
     font-weight: bold;
 }
 
-/* ❌❌ هنا الكود الجديد لعلامة الخطأ ❌❌ */
 .service-list li.cross::before {
     content: '✖';
-    color: #e74c3c; /* أحمر */
+    color: #e74c3c;
     font-size: 1.1rem;
 }
 
-/* --- الفوتر --- */
+/* --- الفوتر الثابت (واتساب) --- */
 .sticky-whatsapp {
     position: fixed;
     bottom: 30px;
@@ -287,318 +285,7 @@ section {
     transform: scale(1.05);
 }
 
-footer {
-    background-color: var(--primary-color);
-    color: var(--text-white);
-    text-align: center;
-    padding: 40px;
-    margin-top: 60px;
-    border-top: 5px solid var(--accent-color);
-}
-
-.social-links a {
-    color: var(--text-white);
-    font-size: 1.8rem;
-    margin: 0 15px;
-}
-
-/* ===========================================
-   📱 Mobile View (للهواتف)
-   =========================================== */
-@media (max-width: 768px) {
-    
-    body {
-        padding-top: 130px;
-    }
-
-    header {
-        flex-direction: column;
-        padding: 10px;
-        gap: 10px;
-    }
-
-    .logo-container {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .logo-img { height: 40px; }
-    .site-title { font-size: 1rem; }
-
-    nav ul {
-        gap: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    nav a {
-        font-size: 0.9rem;
-        padding: 5px 10px;
-        background: rgba(255,255,255,0.1);
-    }
-
-    .hero {
-        height: 60vh;
-        padding: 20px;
-    }
-
-    .hero h1 {
-        font-size: 1.6rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-
-    .btn-main {
-        padding: 10px 25px;
-        font-size: 1rem;
-    }
-
-    section {
-        padding: 40px 20px;
-    }
-
-    .section-title {
-        font-size: 1.6rem;
-    }
-
-    .service-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 25px 15px;
-    }
-
-    .service-card img {
-        margin-bottom: 10px;
-        width: 80px;
-        height: 80px;
-    }
-
-    .service-list {
-        grid-template-columns: 1fr;
-        text-align: right;
-        display: inline-block;
-    }
-
-    .logos-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-
-    .logo-card {
-        height: 150px;
-        padding: 15px;
-    }
-
-    .sticky-whatsapp {
-        padding: 8px 15px;
-        font-size: 0.9rem;
-        bottom: 20px;
-        left: 20px;
-    }
-}
-
-/* --- تنسيق القسم التعريفي (صورة وكلام) --- */
-.about-section {
-    background-color: #fff; /* خلفية بيضاء */
-    padding: 80px 5%;
-}
-
-.about-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 60px; /* مسافة بين الصورة والكلام */
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.about-image {
-    flex: 1;
-    position: relative;
-}
-
-.about-image img {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    border: 5px solid #fff; /* برواز أبيض للصورة */
-}
-
-.about-text {
-    flex: 1;
-}
-
-.about-text h2 {
-    color: var(--primary-color);
-    font-size: 2.2rem;
-    font-weight: 800;
-    margin-bottom: 20px;
-    line-height: 1.4;
-}
-
-.about-text p {
-    font-size: 1.1rem;
-    color: #555;
-    line-height: 1.8;
-    margin-bottom: 25px;
-}
-
-.about-list {
-    margin-bottom: 30px;
-}
-
-.about-list li {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 12px;
-    color: var(--text-dark);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.about-list li i {
-    color: var(--whatsapp-color);
-    font-size: 1.2rem;
-}
-
-/* --- للموبايل (عشان يترتبوا تحت بعض) --- */
-@media (max-width: 768px) {
-    .about-container {
-        flex-direction: column; /* الصورة فوق والكلام تحت */
-        gap: 30px;
-        text-align: center;
-    }
-
-    .about-list li {
-        justify-content: center; /* توسيط القائمة */
-    }
-
-    .about-text h2 {
-        font-size: 1.8rem;
-    }
-}
-
-/* --- تنسيقات النموذج المطور --- */
-.order-section {
-    padding: 60px 5%;
-    background-color: #f4f4f4;
-}
-
-.form-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    max-width: 650px;
-    margin: 0 auto;
-    border-top: 5px solid var(--primary-color);
-}
-
-.form-group {
-    margin-bottom: 15px;
-    text-align: right;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 700;
-    color: var(--primary-color);
-    font-size: 0.95rem;
-}
-
-.form-group input, 
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-family: 'Cairo', sans-serif;
-    font-size: 1rem;
-}
-
-.form-group textarea {
-    height: 80px;
-    resize: vertical;
-}
-
-/* تنسيق الصفوف (عناصر بجانب بعض) */
-.form-row {
-    display: flex;
-    gap: 15px;
-}
-
-.form-group.half { flex: 1; }  /* نصف العرض */
-.form-group.third { flex: 1; } /* ثلث العرض */
-
-/* تنسيق الصناديق الخاصة (هل قدمت مسبقاً / نوع الخدمة) */
-.box-style {
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px dashed #ccc;
-}
-
-.radio-group {
-    display: flex;
-    gap: 30px;
-    margin-top: 10px;
-}
-
-.check-box-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 0.9rem;
-    padding: 5px;
-    border-bottom: 1px solid #eee;
-}
-
-.check-box-item input[type="radio"] {
-    width: 20px;
-    height: 20px;
-    accent-color: var(--whatsapp-color); /* لون الاختيار أخضر */
-}
-
-/* زر الإرسال */
-.submit-btn {
-    width: 100%;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: 0.3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.submit-btn:hover {
-    background-color: var(--whatsapp-color);
-}
-
-/* الموبايل */
-@media (max-width: 768px) {
-    .form-row {
-        flex-direction: column; /* العناصر تحت بعض في الموبايل */
-        gap: 0;
-    }
-}
-
-/* --- تنسيق الفوتر الاحترافي الجديد --- */
+/* --- الفوتر الرئيسي --- */
 .main-footer {
     background-color: var(--primary-color);
     color: var(--text-white);
@@ -665,7 +352,6 @@ footer {
     padding-right: 5px;
 }
 
-/* تنسيق الأيقونات */
 .footer-social-icons {
     display: flex;
     gap: 15px;
@@ -708,23 +394,6 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-/* تعديلات الموبايل للفوتر */
-@media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .footer-col h4::after {
-        right: 50%;
-        transform: translateX(50%);
-    }
-
-    .footer-social-icons {
-        justify-content: center;
-    }
-}
-
 /* --- تنسيق قسم الفيديو --- */
 .video-section {
     padding: 60px 5%;
@@ -746,41 +415,137 @@ footer {
     outline: none;
 }
 
-@media (max-width: 768px) {
-    .video-section { padding: 40px 20px; }
+/* --- تنسيقات النموذج (Forms) --- */
+.order-section {
+    padding: 60px 5%;
+    background-color: #f4f4f4;
 }
 
-/* --- إصلاح وتجميل القوائم المنسدلة (Select Box) --- */
+.form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    max-width: 650px;
+    margin: 0 auto;
+    border-top: 5px solid var(--primary-color);
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 0.95rem;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-group.half { flex: 1; }
+.form-group.third { flex: 1; }
+
+.box-style {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px dashed #ccc;
+}
+
+.radio-group {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.check-box-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.check-box-item input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--whatsapp-color);
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.submit-btn:hover {
+    background-color: var(--whatsapp-color);
+}
+
+/* تحسين Select Box */
 select, .form-group select {
-    width: 100% !important; /* فرض العرض الكامل */
+    width: 100% !important;
     padding: 10px 15px !important;
     border: 1px solid #ccc !important;
     border-radius: 8px !important;
     font-family: 'Cairo', sans-serif !important;
     font-size: 1rem !important;
-    height: 48px !important; /* ارتفاع ثابت ومناسب */
+    height: 48px !important;
     background-color: white !important;
     cursor: pointer;
-    appearance: none; /* إخفاء السهم القديم (اختياري) */
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    /* إضافة سهم جديد شكله أشيك */
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
-    background-position: left 10px center; /* السهم على اليسار لأن الموقع عربي */
+    background-position: left 10px center;
     background-size: 16px;
 }
 
-
-/* --- إصلاح خانة التاريخ نهائياً --- */
+/* تحسين Date Input */
 input[type="date"] {
     display: block;
     width: 100%;
-    /* 1. إصلاح الحروف المعكوسة */
     direction: ltr !important; 
-    /* 2. محاذاة النص لليمين */
     text-align: right !important;
-    /* 3. مسافة عشان الكلام مايدخلش في الأيقونة */
     padding-left: 40px; 
     padding-right: 10px;
     position: relative;
@@ -790,7 +555,6 @@ input[type="date"] {
     font-family: 'Cairo', sans-serif;
 }
 
-/* --- نقل أيقونة التقويم لليسار (عشان تناسب العربي) --- */
 input[type="date"]::-webkit-calendar-picker-indicator {
     position: absolute;
     left: 10px;
@@ -801,28 +565,84 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin: 0;
 }
 
-/* كلاس الخطأ - يجعل البرواز أحمر */
 .input-error {
     border: 2px solid #ff0000 !important;
-    background-color: #ffe6e6 !important; /* خلفية حمراء خفيفة جداً */
+    background-color: #ffe6e6 !important;
 }
 
-/* --- إضافة مسافة فوق زر التقديم في صفحة الخدمات --- */
-.service-content .btn-main {
-    margin-top: 25px !important; /* مسافة 25 بيكسل تفصله عن الكلام */
-    display: inline-block; /* لضمان إن المسافة تتحسب صح */
+/* --- الأقسام التعريفية والإنجازات --- */
+.about-section {
+    background-color: #fff;
+    padding: 80px 5%;
 }
 
-/* --- تنسيق قسم الإنجازات والتعليقات --- */
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-image {
+    flex: 1;
+    position: relative;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    border: 5px solid #fff;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text h2 {
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.about-list {
+    margin-bottom: 30px;
+}
+
+.about-list li {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.about-list li i {
+    color: var(--whatsapp-color);
+    font-size: 1.2rem;
+}
+
 .achievements-section {
     padding: 60px 5%;
-    background-color: #f8f9fa; /* خلفية مختلفة قليلاً للتميز */
+    background-color: #f8f9fa;
     text-align: center;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
 }
 
-/* تنسيق الأرقام */
 .stats-grid {
     display: flex;
     justify-content: center;
@@ -864,64 +684,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* =================================================
-   تنسيق قسم التعليقات (النسخة المنضبطة الاحترافية)
-   ================================================= */
-
-/* 1. الشبكة (الحاوية) */
-.reviews-grid {
-    display: grid;
-    /* هذا السطر يضمن أن الأعمدة تتجاوب مع الشاشة (أقل عرض 300 بيكسل) */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px; /* المسافة بين الكروت */
-    
-    /* ⭐ السحر هنا: توسيط العناصر لو كان عددهم قليل (مثل حالة التعليقين) */
-    justify-content: center;
-    
-    margin-bottom: 25px; /* مسافة صغيرة ومناسبة بين آخر تعليق والزر */
-    padding: 5px; /* مسافة أمان */
-}
-
-/* 2. تصميم الكارت (البطاقة) */
-.review-card {
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* ظل هادئ */
-    border: 1px solid #eee;
-    
-    /* ⭐ لضمان أن جميع الكروت بنفس الطول وتنسيق المحتوى داخلياً */
-    height: 100%; 
-    display: flex;
-    flex-direction: column; /* رص المحتوى فوق بعض */
-    justify-content: space-between; /* توزيع المسافات ليكون الاسم دائماً في الأسفل */
-    
-    text-align: right;
-    transition: transform 0.3s ease;
-}
-
-.review-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent-color); /* تلوين الإطار عند اللمس */
-}
-
-/* =================================================
    تنسيق قسم التعليقات (النسخة المحسنة والجمالية)
    ================================================= */
 
-/* 2. تصميم الكارت (البطاقة) */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 25px;
+    padding: 5px;
+}
+
+/* تصميم الكارت المحسن */
 .review-card {
     background-color: #ffffff;
-    padding: 30px 25px; /* مساحة داخلية مريحة */
+    padding: 30px 25px;
     border-radius: 15px;
-    
-    /* الظل: يعطي عمقاً للبطاقة وكأنها تطفو */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    border: 1px solid #f0f0f0; /* إطار خفيف جداً */
-    
-    /* الشريط الجمالي الملون على اليمين */
+    border: 1px solid #f0f0f0;
     border-right: 5px solid var(--accent-color);
-    
-    /* ضبط التموضع */
     position: relative;
     height: 100%;
     display: flex;
@@ -929,36 +711,34 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     justify-content: space-between;
     text-align: right;
     transition: all 0.3s ease;
-    overflow: hidden; /* لضمان عدم خروج أيقونة الاقتباس */
+    overflow: hidden;
 }
 
-/* تأثير عند مرور الماوس: البطاقة ترتفع قليلاً */
 .review-card:hover {
     transform: translateY(-7px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
     border-color: var(--accent-color);
 }
 
-/* زخرفة: أيقونة اقتباس كبيرة في الخلفية */
+/* أيقونة اقتباس خلفية */
 .review-card::before {
     content: '“';
     position: absolute;
     top: -10px;
-    left: 20px; /* وضعناها على اليسار كخلفية جمالية */
+    left: 20px;
     font-family: serif;
     font-size: 120px;
     line-height: 1;
     color: var(--primary-color);
-    opacity: 0.05; /* شفافة جداً لكي لا تزعج القراءة */
+    opacity: 0.05;
     pointer-events: none;
 }
 
-/* 3. محتوى الكارت */
 .review-card .stars {
     color: #f1c40f;
     margin-bottom: 15px;
     font-size: 16px;
-    letter-spacing: 2px; /* مسافة بين النجوم */
+    letter-spacing: 2px;
 }
 
 .review-card p {
@@ -967,7 +747,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     line-height: 1.8;
     margin-bottom: 25px;
     font-weight: 600;
-    /* ألغينا الخط المائل ليكون أكثر وضوحاً وجدية */
     font-style: normal; 
     position: relative;
     z-index: 2;
@@ -980,14 +759,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: 800;
     margin-top: auto;
     padding-top: 15px;
-    border-top: 1px dashed #ddd; /* خط فاصل منقط */
+    border-top: 1px dashed #ddd;
 }
 
-/* 4. زر العرض (Show More) */
+.hidden-review {
+    display: none !important;
+}
+
 .reviews-container div[style*="text-align: center"] {
     margin-top: 0 !important;
 }
 
+/* زر عرض المزيد الافتراضي */
 .btn-reviews {
     background-color: transparent;
     color: var(--primary-color);
@@ -1007,33 +790,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     box-shadow: 0 5px 15px rgba(12, 36, 97, 0.3);
 }
 
-/* كلاس الإخفاء (مهم جداً لعمل الجافاسكريبت) */
-.hidden-review {
-    display: none !important;
-}
-
-/* 5. ضبط الموبايل */
-@media (max-width: 768px) {
-    .reviews-grid {
-        grid-template-columns: 1fr; /* عمود واحد في الموبايل */
-    }
-}
-
-
-
 /* ===========================================
    كود الزر العائم والواقف (النظام الذكي)
    =========================================== */
    
-/* 1. الكلاس المسؤول عن طيران الزر (Floating) */
+/* الطيران */
 .btn-floating-bottom {
     position: fixed;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
-    
-    /* التنسيق الجمالي */
     background-color: var(--primary-color) !important;
     color: white !important;
     box-shadow: 0 5px 20px rgba(0,0,0,0.4);
@@ -1043,20 +810,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: auto !important;
     min-width: 200px;
     display: block;
-    
-    /* حركة ناعمة */
     transition: all 0.3s ease;
     animation: slideUp 0.3s ease-out;
 }
 
-/* 2. كلاس عادي جداً لما الزر يوقف (Static) */
+/* الوقوف */
 .btn-static {
-    /* يرجع لوضعه الطبيعي في آخر القسم */
     position: relative;
     display: block;
-    margin: 20px auto 0 auto; /* توسيط عادي */
-    
-    /* الشكل */
+    margin: 20px auto 0 auto;
     background-color: var(--primary-color);
     color: white;
     border: 2px solid var(--primary-color);
@@ -1067,8 +829,196 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     z-index: 1;
 }
 
-/* حركة الظهور */
 @keyframes slideUp {
     from { bottom: -60px; opacity: 0; }
     to { bottom: 30px; opacity: 1; }
+}
+
+/* ===========================================
+   تعديلات الوضع الليلي لقسم التعليقات (الأزرق)
+   =========================================== */
+.reviews-section .section-title {
+    color: #ffffff !important;
+    border-bottom-color: var(--accent-color);
+}
+
+.reviews-section .review-count {
+    color: var(--accent-color) !important;
+}
+
+/* تعديل زر العرض عند الخلفية الزرقاء */
+.btn-reviews {
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+.btn-reviews:hover {
+    background-color: #ffffff !important;
+    color: var(--primary-color) !important;
+}
+
+/* ===========================================
+   📱 Mobile View (تحسينات شاملة للهواتف)
+   =========================================== */
+@media (max-width: 768px) {
+    
+    body {
+        padding-top: 110px; /* مسافة أقل للهيدر */
+    }
+
+    /* الهيدر */
+    header {
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .logo-container {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .logo-img { height: 40px; }
+    .site-title { font-size: 1rem; }
+
+    nav ul {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+        background: rgba(255,255,255,0.1);
+    }
+
+    /* البانر */
+    .hero {
+        height: auto; /* ارتفاع تلقائي للموبايل */
+        padding: 80px 20px;
+        min-height: 50vh;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem; /* تصغير الخط */
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    /* الأقسام العامة */
+    section {
+        padding: 40px 20px;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    /* كروت الخدمات */
+    .service-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .service-card img {
+        margin-bottom: 15px;
+        width: 90px;
+        height: 90px;
+    }
+
+    .service-list {
+        grid-template-columns: 1fr; /* عمود واحد للقائمة */
+        text-align: right;
+        display: inline-block;
+        width: 100%;
+    }
+
+    /* شبكة اللوجوهات (2 عمود للموبايل بدل 1) */
+    .logos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .logo-card {
+        height: 140px;
+        padding: 15px;
+    }
+    
+    .logo-card img {
+        max-height: 60px;
+    }
+    
+    .logo-card h3 {
+        font-size: 0.9rem;
+    }
+
+    /* قسم عن الموقع */
+    .about-container {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .about-list li {
+        justify-content: center;
+    }
+
+    .about-text h2 {
+        font-size: 1.8rem;
+    }
+
+    /* الإحصائيات */
+    .stats-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .stat-item {
+        width: 100%; /* عرض كامل */
+        max-width: 350px;
+    }
+
+    /* التعليقات */
+    .reviews-grid {
+        grid-template-columns: 1fr; /* كارت واحد في الصف */
+    }
+    
+    /* الفورم */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* زر الواتس العائم */
+    .sticky-whatsapp {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    /* الفوتر */
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-col h4::after {
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    .footer-social-icons {
+        justify-content: center;
+    }
 }
