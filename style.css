@@ -1022,3 +1022,102 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         justify-content: center;
     }
 }
+
+
+
+
+
+/* ========================================================
+   🚀 تحديثات الموبايل الجذرية (App-Style)
+   ضع هذا الكود في نهاية ملف CSS
+   ======================================================== */
+
+@media (max-width: 768px) {
+
+    /* 1. تحويل شبكة الشعارات إلى سحب جانبي (Horizontal Scroll) */
+    .logos-grid {
+        display: flex; /* تحويلها من شبكة لصف */
+        overflow-x: auto; /* السماح بالسحب الجانبي */
+        scroll-snap-type: x mandatory; /* جعل السحب يقف عند كل عنصر بانتظام */
+        gap: 15px;
+        padding-bottom: 20px; /* مساحة لشريط التمرير */
+        -webkit-overflow-scrolling: touch; /* نعومة السحب في الآيفون */
+    }
+
+    .logo-card {
+        min-width: 140px; /* عرض ثابت لكل كارت */
+        scroll-snap-align: center; /* العنصر يقف في المنتصف */
+        height: 130px; /* تقليل الطول */
+        margin-bottom: 0; /* إلغاء الهوامش السفلية */
+    }
+
+    /* إخفاء شريط التمرير (Scrollbar) لشكل أجمل */
+    .logos-grid::-webkit-scrollbar {
+        height: 4px;
+    }
+    .logos-grid::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 10px;
+    }
+
+    /* 2. تحسين كروت الخدمات (مضغوطة) */
+    .service-card {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+        border-right: 4px solid var(--primary-color); /* تصغير الخط الجانبي */
+    }
+
+    .service-card img {
+        width: 70px; /* تصغير الأيقونة */
+        height: 70px;
+        margin-bottom: 10px;
+    }
+
+    .service-content h2 {
+        font-size: 1.3rem; /* تصغير العنوان */
+    }
+
+    /* 3. تحسين الهيدر للموبايل */
+    header {
+        padding: 10px;
+        background-color: var(--primary-color);
+    }
+
+    .logo-img {
+        height: 35px; /* تصغير اللوجو */
+    }
+
+    .site-title {
+        font-size: 0.9rem; /* تصغير اسم الموقع */
+    }
+
+    nav ul {
+        gap: 5px; /* تقليل المسافات بين الروابط */
+    }
+
+    nav a {
+        font-size: 0.8rem; /* تصغير الخط */
+        padding: 5px 8px;
+    }
+
+    /* 4. تحسين قسم "أرقام نفتخر بها" */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* جعلها 2 بجانب بعض بدلاً من تحت بعض */
+        gap: 10px;
+    }
+
+    .stat-item {
+        width: 100%;
+        padding: 15px 5px;
+        max-width: none;
+    }
+
+    .stat-item h3 {
+        font-size: 1.5rem;
+    }
+
+    .stat-item i {
+        font-size: 1.8rem;
+    }
+}
