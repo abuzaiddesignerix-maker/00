@@ -262,27 +262,47 @@ section {
     font-size: 1.1rem;
 }
 
-/* --- الفوتر الثابت (واتساب) --- */
+/* --- زر الواتساب (أيقونة دائرية فقط) --- */
 .sticky-whatsapp {
     position: fixed;
     bottom: 30px;
     left: 30px;
     background-color: var(--whatsapp-color);
     color: white;
-    padding: 15px 30px;
-    border-radius: 50px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    font-weight: bold;
-    font-size: 1.1rem;
-    z-index: 2000;
+    
+    /* جعل الزر دائرياً */
+    width: 60px;  /* عرض ثابت */
+    height: 60px; /* ارتفاع نفس العرض */
+    border-radius: 50%; /* تحويل المربع لدائرة */
+    
+    /* توسيط الأيقونة داخل الدائرة */
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
-    transition: transform 0.3s;
+    
+    /* تكبير حجم الأيقونة */
+    font-size: 30px; 
+    
+    z-index: 2000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
 }
 
+/* حركة بسيطة عند مرور الماوس */
 .sticky-whatsapp:hover {
-    transform: scale(1.05);
+    transform: scale(1.1) rotate(10deg); /* تكبير ودوران بسيط */
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+/* تعديل للموبايل (اختياري: تصغيره قليلاً) */
+@media (max-width: 768px) {
+    .sticky-whatsapp {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+        bottom: 20px;
+        left: 20px;
+    }
 }
 
 /* --- الفوتر الرئيسي --- */
