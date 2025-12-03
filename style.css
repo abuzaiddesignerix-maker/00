@@ -1228,7 +1228,7 @@ html {
 
 .radio-group {
     display: flex;
-    gap: 1px; /* المسافة بين خيار نعم وخيار لا */
+    gap: 35px; /* المسافة بين خيار نعم وخيار لا */
     justify-content: flex-start; /* التأكد أنهم على اليمين */
 }
 
