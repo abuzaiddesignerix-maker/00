@@ -1110,16 +1110,23 @@ html {
 }
 
 
-/* --- تنسيق كروت التواصل العلوية --- */
+/* --- تنسيق كروت التواصل العلوية (النسخة المحسنة - عرض مناسب) --- */
 .contact-header-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex; /* استخدام Flex بدلاً من Grid للتحكم الأفضل */
+    justify-content: center; /* توسيط الكروت في منتصف الصفحة */
+    flex-wrap: wrap; /* السماح للكروت بالنزول لسطر جديد لو الشاشة صغيرة */
     gap: 20px;
-    margin-bottom: 40px;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
     padding: 10px;
 }
 
 .contact-box {
+    flex: 1; /* الكارت مرن */
+    min-width: 280px; /* أقل عرض ممكن */
+    max-width: 350px; /* 👈 ده الحل: أقصى عرض للكارت عشان ميبقاش عريض أوي */
+    
+    /* باقي التنسيقات الجمالية */
     display: flex;
     align-items: center;
     gap: 20px;
@@ -1145,7 +1152,7 @@ html {
     justify-content: center;
     font-size: 28px;
     transition: 0.3s;
-    color: #333; /* لون افتراضي */
+    color: #333;
 }
 
 /* النصوص */
@@ -1188,9 +1195,9 @@ html {
 }
 .tiktok-box .icon-wrapper { color: #000; }
 
-/* للموبايل */
+/* للموبايل: نسمح للكارت ياخد العرض المتاح عشان يبقى شكله حلو */
 @media (max-width: 768px) {
-    .contact-header-grid {
-        grid-template-columns: 1fr;
+    .contact-box {
+        max-width: 100%; 
     }
 }
