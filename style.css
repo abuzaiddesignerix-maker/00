@@ -893,6 +893,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
    ======================================================== */
 @media (max-width: 768px) {
 
+    /* تصغير خط خيارات "نوع الخدمة" في الموبايل */
+    .check-box-item {
+        font-size: 0.8rem !important; /* تصغير الخط */
+        padding: 8px 5px; /* تقليل الحواف الداخلية */
+        gap: 5px; /* تقريب المسافة بين الدائرة والكلام */
+    }
+
+    /* تصغير الدائرة نفسها لتتناسب مع الخط الصغير */
+    .check-box-item input[type="radio"] {
+        width: 16px;
+        height: 16px;
+    }
+    
     /* 1. إصلاحات عامة للجسم والخطوط */
     body {
         padding-top: 120px; /* مسافة كافية للهيدر المتراكم */
