@@ -1213,46 +1213,230 @@ html {
 .tiktok-box:hover { border-color: #000; transform: translateY(-3px); }
 .tiktok-box:hover .icon-wrapper { background-color: #000; color: white; }
 
-/* للموبايل */
+/* ========================================================
+   📱 تحديثات الموبايل الجذرية (النسخة المجمعة والنهائية)
+   ======================================================== */
 @media (max-width: 768px) {
-    
-    .contact-box {
-        max-width: 100%; /* الكارت يأخذ العرض كامل */
-    } /* 👈 لازم نقفل القوس ده الأول */
 
-    .radio-group {
-        gap: 1px !important; /* تقليل المسافة في الموبايل فقط */
+    /* 1. إصلاحات عامة للجسم والخطوط */
+    body {
+        padding-top: 120px;
     }
 
-} /* 👈 ودي قفلة الميديا كويري الكبيرة */
+    section {
+        padding: 40px 5%;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    /* 2. تحسين الهيدر */
+    header {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .logo-container {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .logo-img {
+        height: 40px;
+    }
+
+    nav ul {
+        gap: 5px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    nav a {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+        background: rgba(255,255,255,0.1);
+        display: inline-block;
+        margin: 2px;
+    }
+
+    /* 3. إصلاح البانر (Hero) */
+    .hero {
+        padding: 40px 20px;
+        height: auto;
+        min-height: 60vh;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+        line-height: 1.4;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    /* 4. إصلاح قسم الخدمات */
+    .service-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+        border-right: none;
+        border-top: 5px solid var(--primary-color);
+        gap: 20px;
+    }
+
+    .service-card img {
+        margin: 0 auto;
+        width: 80px;
+        height: 80px;
+    }
+
+    .service-list {
+        grid-template-columns: 1fr;
+        text-align: right;
+    }
+
+    /* 5. إصلاح قسم "من نحن" */
+    .about-container {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .about-image {
+        order: -1;
+        width: 100%;
+    }
+
+    .about-text h2 {
+        font-size: 1.6rem;
+    }
+
+    .about-list li {
+        justify-content: center;
+    }
+
+    /* 6. إصلاح الفورم والحقول */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .form-group.half, 
+    .form-group.third {
+        width: 100%;
+    }
+
+    .form-container {
+        padding: 20px;
+    }
+
+    /* 7. تعديل شريط الشعارات (شبكة ثابتة عمودين) */
+    .logos-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        overflow-x: visible;
+        padding-bottom: 0;
+        scroll-snap-type: none;
+    }
+
+    .logo-card {
+        min-width: auto;
+        width: 100%;
+        height: auto;
+        min-height: 150px;
+        scroll-snap-align: none;
+    }
+    
+    .logos-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* 8. الأرقام والفوتر */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .stat-item {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .stat-item h3 {
+        font-size: 1.5rem;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-col h4::after {
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    .footer-social-icons {
+        justify-content: center;
+    }
+
+    /* 9. إصلاحات كروت التواصل */
+    .contact-box {
+        max-width: 100%;
+    }
+
+    /* 10. تصغير خيارات "نوع الخدمة" والسطر الطويل */
+    .check-box-item {
+        font-size: 0.65rem !important; /* خط صغير جداً ليناسب السطر */
+        padding: 8px 2px;
+        gap: 3px;
+        white-space: nowrap; /* إجبار النص في سطر واحد */
+    }
+
+    .check-box-item input[type="radio"] {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* 11. تقليل المسافة بين (نعم/لا) في الموبايل */
+    .radio-group {
+        gap: 15px !important; /* مسافة ملمومة ومناسبة */
+    }
+
+} /* نهاية الميديا كويري */
 
 
 /* ========================================================
-   🛠️ إصلاح أزرار الاختيار (نعم / لا) للموبايل
+   🛠️ التنسيقات العامة للراديو (الكمبيوتر والموبايل)
    ======================================================== */
 
 .radio-group {
     display: flex;
-    gap: 35px; /* المسافة بين خيار نعم وخيار لا */
-    justify-content: flex-start; /* التأكد أنهم على اليمين */
+    gap: 35px; /* المسافة الافتراضية للكمبيوتر */
+    justify-content: flex-start;
 }
 
 .radio-label {
-    display: inline-flex; /* 👈 هذا هو الحل السحري: يربط الدائرة بالكلمة */
-    align-items: center; /* محاذاة الدائرة مع النص في المنتصف */
-    gap: 8px; /* المسافة الدقيقة بين الدائرة والكلمة */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     cursor: pointer;
     font-size: 1rem;
     font-weight: 700;
     position: relative;
 }
 
-/* تنظيف الدائرة نفسها من مسافات المتصفح الافتراضية */
 .radio-label input[type="radio"] {
-    margin: 0 !important; /* إلغاء أي إزاحة إجبارية */
+    margin: 0 !important;
     padding: 0;
     width: 20px;
     height: 20px;
-    accent-color: var(--whatsapp-color); /* تلوين الدائرة بالأخضر */
+    accent-color: var(--whatsapp-color);
     vertical-align: middle;
 }
