@@ -158,14 +158,14 @@
                     </label>
                 </div>
 
-                <div class="form-group box-style">
-                    <label>هل تريد إضافة بيانات أخرى تفصيلية؟</label>
+              <div class="form-group box-style">
+                    <label>هل تريد إضافة بيانات أخرى تفصيلية؟ <span style="color:red">*</span></label>
                     <div class="radio-group">
                         <label class="radio-label">
                             <input type="radio" name="extraData" value="نعم" onchange="toggleExtraData(true)"> نعم
                         </label>
                         <label class="radio-label">
-                            <input type="radio" name="extraData" value="لا" checked onchange="toggleExtraData(false)"> لا
+                            <input type="radio" name="extraData" value="لا" onchange="toggleExtraData(false)"> لا
                         </label>
                     </div>
                 </div>
@@ -328,7 +328,7 @@
         </div>
     </footer>
 
-    <script>
+<script>
         // تعبئة القوائم الهجرية
         document.addEventListener('DOMContentLoaded', function() {
             var daySelect = document.getElementById('hDay');
@@ -387,10 +387,23 @@
                 return;
             }
 
-            // 3. التحقق من البيانات الإضافية (الهوية والأب)
-            var wantExtra = document.querySelector('input[name="extraData"]:checked').value;
-            var extraMessage = "";
+            // 3. التحقق من اختيار (هل قدمت مسبقاً؟) - جديد 🔴
+            var appliedEl = document.querySelector('input[name="applied"]:checked');
+            if (!appliedEl) {
+                alert("يرجى اختيار ما إذا قمت بالتقديم مسبقاً أم لا.");
+                return; // يوقف الإرسال
+            }
+            var applied = appliedEl.value;
 
+            // 4. التحقق من اختيار (بيانات إضافية؟) - جديد 🔴
+            var extraDataEl = document.querySelector('input[name="extraData"]:checked');
+            if (!extraDataEl) {
+                alert("يرجى اختيار ما إذا كنت تريد إضافة بيانات تفصيلية أم لا.");
+                return; // يوقف الإرسال
+            }
+            var wantExtra = extraDataEl.value;
+
+            var extraMessage = "";
             if (wantExtra === "نعم") {
                 var idInput = document.getElementById("idNumber");
                 var fatherInput = document.getElementById("fatherId");
@@ -404,7 +417,6 @@
                         return;
                     }
                 }
-
                 // شرط رقم هوية الأب
                 if (fatherInput.value !== "") {
                     if (fatherInput.value.charAt(0) !== "1" || fatherInput.value.length !== 10) {
@@ -432,7 +444,7 @@
                 }
 
                 extraMessage =  "---------------------------%0a" +
-                                "*📝 بيانات تفصيلية إضافية:*%0a" +
+                                "*📍 بيانات تفصيلية إضافية:*%0a" +
                                 "*📍 رقم الهوية:* " + idInput.value + "%0a" +
                                 "*📍 رقم هوية الأب:* " + fatherInput.value + "%0a" +
                                 "*📍 تاريخ الميلاد:* " + dobValue + "%0a" +
@@ -447,8 +459,7 @@
                                 "*📍 اسم أحد الأقرباء:* " + document.getElementById("relativeName").value + "%0a";
             }
 
-            // 4. إرسال الرسالة
-            var applied = document.querySelector('input[name="applied"]:checked').value;
+            // إرسال الرسالة
             var appNumber = (applied === "نعم") ? document.getElementById("appNumber").value : "لا يوجد";
             var serviceType = document.querySelector('input[name="serviceType"]:checked') ? document.querySelector('input[name="serviceType"]:checked').value : "لم يتم التحديد";
 
@@ -456,7 +467,7 @@
                           "---------------------------%0a" +
                           "*📍 الاسم:* " + name + "%0a" +
                           "*📍 الجوال:* " + phone + "%0a" +
-                          "*📧 البريد:* " + document.getElementById("email").value + "%0a" +
+                          "*📍 البريد:* " + document.getElementById("email").value + "%0a" +
                           "*📍 الطول:* " + document.getElementById("height").value + " سم%0a" +
                           "*📍 الوزن:* " + document.getElementById("weight").value + " كجم%0a" +
                           "*📍 العمر:* " + document.getElementById("age").value + " سنة%0a" +
@@ -476,6 +487,6 @@
             window.open("https://wa.me/966581926365?text=" + message, '_blank');
         }
     </script>
-
+    
 </body>
 </html>
