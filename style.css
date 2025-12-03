@@ -1024,18 +1024,27 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         -webkit-overflow-scrolling: touch;
     }
 
-    .logo-card {
-        min-width: 140px;
-        scroll-snap-align: center;
-        height: 130px;
+    /* 7. تعديل شريط الشعارات (إلغاء السحب وجعله شبكة ثابتة) */
+    .logos-grid {
+        display: grid; /* العودة لنظام الشبكة */
+        grid-template-columns: repeat(2, 1fr); /* عرض عنصرين بجانب بعض (عمودين) */
+        gap: 15px; /* مسافة بين العناصر */
+        overflow-x: visible; /* إلغاء شريط التمرير الجانبي */
+        padding-bottom: 0;
+        scroll-snap-type: none; /* إلغاء خاصية المغناطيس */
     }
 
-    .logos-grid::-webkit-scrollbar {
-        height: 4px;
+    .logo-card {
+        min-width: auto; /* إلغاء العرض الإجباري */
+        width: 100%; /* يأخذ مساحته في الشبكة */
+        height: auto; /* الطول أوتوماتيك */
+        min-height: 150px; /* طول أدنى لتوحيد الشكل */
+        scroll-snap-align: none;
     }
-    .logos-grid::-webkit-scrollbar-thumb {
-        background: #ccc;
-        border-radius: 10px;
+    
+    /* إخفاء أي شريط تمرير قد يظهر بالخطأ */
+    .logos-grid::-webkit-scrollbar {
+        display: none;
     }
 
     /* 8. الأرقام والإحصائيات */
