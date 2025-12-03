@@ -889,28 +889,147 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* ========================================================
-   🚀 تحديثات الموبايل الجذرية (App-Style)
+   📱 تحديثات الموبايل الجذرية (تم إصلاح التناسق والأحجام)
    ======================================================== */
 @media (max-width: 768px) {
 
-    /* 1. تحويل شبكة الشعارات إلى سحب جانبي (Horizontal Scroll) */
+    /* 1. إصلاحات عامة للجسم والخطوط */
+    body {
+        padding-top: 120px; /* مسافة كافية للهيدر المتراكم */
+    }
+
+    section {
+        padding: 40px 5%; /* تقليل الهوامش الداخلية للأقسام */
+    }
+
+    .section-title {
+        font-size: 1.8rem; /* تصغير عناوين الأقسام الضخمة */
+    }
+
+    /* 2. تحسين الهيدر (القائمة العلوية) */
+    header {
+        padding: 10px 15px;
+        flex-direction: column; /* العناصر فوق بعض */
+        gap: 10px;
+    }
+
+    .logo-container {
+        width: 100%;
+        justify-content: center; /* توسيط اللوجو */
+    }
+
+    .logo-img {
+        height: 40px;
+    }
+
+    nav ul {
+        gap: 5px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    nav a {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+        background: rgba(255,255,255,0.1);
+        display: inline-block;
+        margin: 2px;
+    }
+
+    /* 3. إصلاح البانر الرئيسي (Hero) */
+    .hero {
+        padding: 40px 20px;
+        height: auto;
+        min-height: 60vh;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem; /* تصغير الخط الضخم */
+        line-height: 1.4;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    /* 4. إصلاح قسم الخدمات (كان يظهر بشكل مضغوط) */
+    .service-card {
+        flex-direction: column; /* الصورة فوق والنص تحت */
+        text-align: center;
+        padding: 30px 20px;
+        border-right: none;
+        border-top: 5px solid var(--primary-color); /* نقل الخط للأعلى */
+        gap: 20px;
+    }
+
+    .service-card img {
+        margin: 0 auto; /* توسيط الصورة */
+        width: 80px;
+        height: 80px;
+    }
+
+    .service-list {
+        grid-template-columns: 1fr; /* القائمة بند واحد في السطر */
+        text-align: right; /* القائمة تظل محاذاة لليمين لجمالية القراءة */
+    }
+
+    /* 5. إصلاح قسم "من نحن" (About) - كان متداخل */
+    .about-container {
+        flex-direction: column; /* الصورة فوق والنص تحت */
+        gap: 30px;
+        text-align: center;
+    }
+
+    .about-image {
+        order: -1; /* رفع الصورة للأعلى */
+        width: 100%;
+    }
+
+    .about-text h2 {
+        font-size: 1.6rem;
+    }
+
+    .about-list li {
+        justify-content: center; /* توسيط النقاط */
+    }
+
+    /* 6. إصلاح الفورم (Forms) - الحقول كانت ضيقة */
+    .form-row {
+        flex-direction: column; /* الحقول فوق بعض */
+        gap: 0;
+    }
+
+    .form-group.half, 
+    .form-group.third {
+        width: 100%; /* الحقل يأخذ العرض كامل */
+    }
+
+    .form-container {
+        padding: 20px;
+    }
+
+    .radio-group {
+        flex-direction: column; /* خيارات الراديو فوق بعض */
+        gap: 10px;
+    }
+
+    /* 7. شريط الشعارات (Scrollable) */
     .logos-grid {
-        display: flex; /* تحويلها من شبكة لصف */
-        overflow-x: auto; /* السماح بالسحب الجانبي */
-        scroll-snap-type: x mandatory; /* جعل السحب يقف عند كل عنصر بانتظام */
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
         gap: 15px;
-        padding-bottom: 20px; /* مساحة لشريط التمرير */
-        -webkit-overflow-scrolling: touch; /* نعومة السحب في الآيفون */
+        padding-bottom: 20px;
+        -webkit-overflow-scrolling: touch;
     }
 
     .logo-card {
-        min-width: 140px; /* عرض ثابت لكل كارت */
-        scroll-snap-align: center; /* العنصر يقف في المنتصف */
-        height: 130px; /* تقليل الطول */
-        margin-bottom: 0; /* إلغاء الهوامش السفلية */
+        min-width: 140px;
+        scroll-snap-align: center;
+        height: 130px;
     }
 
-    /* إخفاء شريط التمرير (Scrollbar) لشكل أجمل */
     .logos-grid::-webkit-scrollbar {
         height: 4px;
     }
@@ -919,105 +1038,37 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         border-radius: 10px;
     }
 
-    /* 2. تحسين كروت الخدمات (مضغوطة) */
-    .service-card {
-        padding: 20px 15px;
-        margin-bottom: 20px;
-        border-right: 4px solid var(--primary-color); /* تصغير الخط الجانبي */
-    }
-
-    .service-card img {
-        width: 70px; /* تصغير الأيقونة */
-        height: 70px;
-        margin-bottom: 10px;
-    }
-
-    .service-content h2 {
-        font-size: 1.3rem; /* تصغير العنوان */
-    }
-
-    /* 3. تحسين الهيدر للموبايل */
-    header {
-        padding: 10px;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .logo-img {
-        height: 35px; /* تصغير اللوجو */
-    }
-
-    .site-title {
-        font-size: 0.9rem; /* تصغير اسم الموقع */
-    }
-
-    nav ul {
-        gap: 5px; /* تقليل المسافات بين الروابط */
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    nav a {
-        font-size: 0.8rem; /* تصغير الخط */
-        padding: 5px 8px;
-        background: rgba(255,255,255,0.1);
-    }
-
-    /* 4. تحسين قسم "أرقام نفتخر بها" */
+    /* 8. الأرقام والإحصائيات */
     .stats-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr; /* جعلها 2 بجانب بعض بدلاً من تحت بعض */
-        gap: 10px;
+        grid-template-columns: 1fr 1fr; /* عنصرين في السطر */
+        gap: 15px;
     }
 
     .stat-item {
         width: 100%;
-        padding: 15px 5px;
-        max-width: none;
+        padding: 15px;
     }
 
     .stat-item h3 {
         font-size: 1.5rem;
     }
 
-    .stat-item i {
-        font-size: 1.8rem;
-    }
-    
-    /* 5. تحسينات عامة */
-    body {
-        padding-top: 110px;
-    }
-    
-    .hero {
-        padding: 60px 20px;
-        height: auto;
-        min-height: 50vh;
-    }
-    
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-    
-    .reviews-grid {
-        grid-template-columns: 1fr;
-    }
-    
+    /* 9. الفوتر */
     .footer-container {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .footer-col h4::after {
         right: 50%;
-        transform: translateX(50%);
+        transform: translateX(50%); /* توسيط الخط تحت العنوان */
     }
-    
+
     .footer-social-icons {
         justify-content: center;
     }
 }
-
 
 /* --- إضافة مسافة فوق زر التقديم في صفحة الخدمات --- */
 .service-card .btn-main {
