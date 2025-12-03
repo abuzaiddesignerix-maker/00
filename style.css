@@ -1110,35 +1110,35 @@ html {
 }
 
 
-/* --- تنسيق كروت التواصل (نسخة مصغرة ومريحة للعين) --- */
+/* --- تنسيق كروت التواصل (نسخة رفيعة "كنزة" لكن بحجم واضح) --- */
 .contact-header-grid {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 15px; /* تقليل المسافة بين الكروت */
-    max-width: 900px; /* تقليل عرض الكونتينر الكلي */
+    gap: 15px;
+    max-width: 900px;
     
-    /* 👇 التعديل هنا: زودنا المسافة من فوق (50px) عشان تنزل تحت */
-    margin: 50px auto 40px auto; 
+    /* 👇 نزلناهم تحت بمسافة 60 بيكسل */
+    margin: 60px auto 40px auto; 
     
     padding: 10px;
 }
 
 .contact-box {
     flex: 1;
-    min-width: 200px; /* تصغير أقل عرض */
+    min-width: 200px;
     
-    /* 👇 التعديل هنا: صغرنا أقصى عرض عشان تبقى "ملمومة" */
-    max-width: 260px; 
+    /* 👇 هنا التعديل: العرض قليل (رفيع) بس المحتوى واخد راحته */
+    max-width: 240px; 
     
     /* تنسيقات الشكل */
     display: flex;
     align-items: center;
-    gap: 15px; /* تقريب الأيقونة من الكلام */
+    gap: 15px; 
     background: #ffffff;
-    padding: 15px; /* تصغير الحواف الداخلية */
-    border-radius: 12px; /* تدوير الحواف بشكل أنعم */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    padding: 15px; /* حواف داخلية مريحة */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     border: 1px solid #eee;
     transition: all 0.3s ease;
     text-decoration: none;
@@ -1146,39 +1146,40 @@ html {
     overflow: hidden;
 }
 
-/* تصغير الأيقونة */
+/* الأيقونة (حجمها كبير وواضح مش صغير) */
 .icon-wrapper {
-    width: 45px; /* تصغير الدائرة */
-    height: 45px;
+    width: 50px; /* رجعنا الدائرة لحجم متوسط */
+    height: 50px;
     background-color: #f8f9fa;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px; /* تصغير رمز الواتس/تيك توك */
+    font-size: 24px; /* رجعنا الرمز لحجم واضح */
     transition: 0.3s;
     color: #333;
+    flex-shrink: 0;
 }
 
-/* تصغير النصوص */
+/* النصوص (حجمها طبيعي ومقروء) */
 .box-details h3 {
-    font-size: 0.95rem; /* تصغير العنوان */
+    font-size: 1rem; /* الخط رجع لحجمه الطبيعي */
     font-weight: 800;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
     color: var(--primary-color);
 }
 
 .box-details span {
-    font-size: 0.8rem; /* تصغير الرقم/اليوزر */
+    font-size: 0.85rem;
     color: #777;
     font-weight: 600;
 }
 
-/* --- تأثيرات التحويم (Hover) كما هي --- */
+/* --- تأثيرات التحويم (Hover) --- */
 .whatsapp-box:hover {
     border-color: #25d366;
     transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(37, 211, 102, 0.1);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.15);
 }
 .whatsapp-box:hover .icon-wrapper {
     background-color: #25d366;
@@ -1189,7 +1190,7 @@ html {
 .tiktok-box:hover {
     border-color: #000;
     transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 .tiktok-box:hover .icon-wrapper {
     background-color: #000;
@@ -1200,9 +1201,9 @@ html {
 /* للموبايل */
 @media (max-width: 768px) {
     .contact-box {
-        max-width: 100%; /* في الموبايل تاخد راحتها */
+        max-width: 100%; 
     }
     .contact-header-grid {
-        margin-top: 30px; /* مسافة أقل شوية في الموبايل */
+        margin-top: 40px;
     }
 }
